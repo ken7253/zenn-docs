@@ -1,0 +1,16 @@
+{
+  "name": "zenn-docs",
+  "version": "1.0.0",
+  "description": "zenn articles and books",
+  "main": "index.js",
+  "scripts": {
+    "preview": "npx zenn preview",
+    "zenn-update" :"npm install zenn-cli@latest"
+  },
+  "repository": "https://github.com/ken7253/zenn-docs.git",
+  "author": "ken7253 <ken7253@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "zenn-cli": "^0.1.43"
+  }
+}

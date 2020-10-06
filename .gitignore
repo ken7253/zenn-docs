@@ -1,0 +1,5 @@
+# 公開しない記事
+# /articles/
+# 公開しない本
+# /books/
+/node_modules/
