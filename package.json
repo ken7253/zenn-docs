@@ -4,6 +4,8 @@
   "description": "zenn articles and books",
   "main": "index.js",
   "scripts": {
+    "new_Article" :"npx zenn new:article",
+    "new_Book": "npx zenn new:book",
     "preview": "npx zenn preview",
     "zenn-update" :"npm install zenn-cli@latest"
   },
