@@ -1,6 +1,6 @@
 ---
 title: "初心者コーダーがNodeCGを学ぶ（概念編）"
-emoji: "😸"
+emoji: "🐱"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["JavaScript"]
 published: true
