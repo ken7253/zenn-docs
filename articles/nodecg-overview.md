@@ -1,12 +1,14 @@
 ---
-title: "初心者コーダーがNodeCGを学ぶ"
+title: "初心者コーダーがNodeCGを学ぶ（概念編）"
 emoji: "😸"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["JavaScript"]
-published: false
+published: fales
 ---
 # はじめに
-*この記事は自分が以前にQiitaに投稿した記事の再投稿となります*  
+:::message  
+この記事は自分が以前にQiitaに投稿した記事の再投稿となります  
+:::
 
 自分は普段ゲームのイベントなどで主にライブ配信周りの技術的なお手伝いなどをさせていただいていたのですが
 その中でNodeCGという配信画面をWebの技術で構築する仕組みを知り学んでみたのでその内容をまとめておきたいと思います。
@@ -31,7 +33,7 @@ NodeCGがどういったものなのか、導入方法についてはHoishinさ�
 
 この記事ではHTML/CSS/JSのみでNodeCGのbundleを作成する場合の解説になります。
 各種フレームワーク（React/Vue/Angular）等を利用してbundleを作成する方法もありますが
-webサイトを作った事があるぐらいの人でも活用できる内容にしたいためHTML/CSS/JSでの解説を進めていきます。
+webサイトを作った事があるぐらいの人でも活用できる内容にしたいためHTML/CSS/JSでの解説を進めていきます。  
 ちなみにエディタは[VScode](https://code.visualstudio.com/)をおすすめします。
 
 ## 対象
@@ -58,16 +60,16 @@ bundleとは何かというと、配信レイアウトの構築に必要なフ�
 
 ファイル構成としてまずは最低限このようなファイルが必要になります。
 またHTMLにスタイルなどを直接記述してCSSやJSをまとめても問題ありません。
->sample-bundle
->├ dashboard
->│ ├ sample-panel.html //管理用のパネルのhtml本体
->│ ├ style.css //dashboard用のスタイルシート
->│ └ main.js //dashboard用のJavascript
->├ graphics
->│ ├ sample.html //レイアウト画面（OBSで読み込むのもこのページになります）
->│ ├ style.css //graphics用のスタイルシート
->│ └ main.js //graphics用のJavascript
->└ package.json //設定ファイル
+>sample-bundle  
+>├ dashboard  
+>│ ├ sample-panel.html    //管理用のパネルのhtml本体  
+>│ ├ style.css            //dashboard用のスタイルシート  
+>│ └ main.js              //dashboard用のJavascript  
+>├ graphics  
+>│ ├ sample.html          //レイアウト画面（OBSで読み込むのもこのページになります）  
+>│ ├ style.css            //graphics用のスタイルシート  
+>│ └ main.js              //graphics用のJavascript  
+>└ package.json            //設定ファイル  
 
 また、gitで管理する場合は`sample-bundle`内をgitで管理してあげれば配布なども容易になるかと思われます。
 
@@ -106,7 +108,7 @@ bundleとは何かというと、配信レイアウトの構築に必要なフ�
 }
 ```
 ### ちょっと内容について解説
-基本的に`package.json`ですので内容としてはNPMを利用する際に生成される`package.json`と同じです。
+基本的に`package.json`ですので内容としてはnpmを利用する際に生成される`package.json`と同じです。
 NPMを使ったことが無い人からすると分かりづらいですが
 他にも様々な項目を記述することができたりパッケージ管理などもこのファイルで行われるんだなという認識で問題ないと思います。
 
