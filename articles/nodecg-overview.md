@@ -3,7 +3,7 @@ title: "初心者コーダーがNodeCGを学ぶ（概念編）"
 emoji: "😸"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["JavaScript"]
-published: ture
+published: true
 ---
 # はじめに
 :::message  
