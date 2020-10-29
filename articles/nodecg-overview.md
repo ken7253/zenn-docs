@@ -18,8 +18,8 @@ published: true
 
 ## NodeCGとは
 
-- 公式サイト [Broadcast Graphics | NodeCG](https://nodecg.com/)
-- ドキュメントは[こちら](https://nodecg.com/docs/what-is-nodecg)
+- 公式サイト [Broadcast Graphics | NodeCG](https://nodecg.dev)
+- ドキュメントは[こちら](https://nodecg.dev/docs/what-is-nodecg)
 
 公式ドキュメントは英語ですがGoogle翻訳やDeepLでなんとかなったりするのでひとまずこちらを読んでみましょう。
 
@@ -185,3 +185,6 @@ NodeCGの設定項目としては上記の部分が中心で上から
 
 実際に動的なbundleを作る場合には特にNodeCGの中のReplicantなどの仕組みを使う必要があるのですが
 ここまで書いて気力が尽きたので、そちらについてはまた改めて書かせていただきます。。。
+
+### 更新履歴
+- 2020-10-29 NodeCGのWebサイトリンクを更新
