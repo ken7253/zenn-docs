@@ -10,41 +10,59 @@ published: false
 記事自体はNodeCGのbundle作成についての内容ですが、前回の記事も読んでいただけるとより理解しやすいかと思われます。
 
 # 異なるページ間でどのようにデータを渡すのか
-NodeCGで配信レイアウトを作成する場合、操作はダッシュボード側で行いデータの選択や作成などはダッシュボード内で生成されます。
-そのダッシュボードで作られたデータをどのようにしてグラフィック（配信レイアウト）側に渡せばいいのでしょうか。
-このような処理のためにNodeCGではReplicantという簡易的なDBのような仕組みが用意されています。
+NodeCGで配信レイアウトを作成する場合、操作はダッシュボード側で行いデータの選択や作成などはダッシュボード内で生成されます。  
+ダッシュボードで作られたデータをどのようにしてグラフィック（配信レイアウト）側に渡せばいいのでしょうか。
+このような処理のためにNodeCGではReplicantという簡易DBのような仕組みが用意されています。
 
 ## Replicantを理解する
 ### Replicantとは
-公式ドキュメント：[Replicant | NodeCG](https://nodecg.com/docs/classes/replicant/)
+公式ドキュメント：[Replicant | NodeCG](https://nodecg.com/docs/classes/replicant/)  
 書きながら公式ドキュメントが一番わかりやすいなと思いました
 
-### 実際の使用方法
+### 値の受け渡し
 
 ```javascript:dashboard.js
-const sampleRep = nodecg.Replicant('sample'); // レプリカントに名前をつけて作成
-sampleRep.value = 'sample text hoge'; // その中身にテキスト'sample text'を代入
+const sampleRep = nodecg.Replicant('sample');
+// レプリカントに名前をつけて作成
+sampleRep.value = 'sample text hoge'; 
+// その中身にテキスト'sample text'を代入
 ```
 
 ```javascript:graphic.js
-const sampleRep = nodecg.Replicant('sample', { //sampleという名前のReplicantを読み込み
-    defaultValue: 'sample text piyo' // 指定がない場合の初期値
+const sampleRep = nodecg.Replicant('sample', {
+    //sampleという名前のReplicantを読み込み
+    defaultValue: 'sample text piyo'
+    // 指定がない場合の初期値
 });
-console.log(sampleRep); // consoleに表示
+console.log(sampleRep);
+// consoleに表示
 ```
-こんな感じで書いてあげればReplicantを使用することはできます。
-実際に使用する場合はhtmlのテキストボックスから文字列を取得したり、実際にHTMLに反映させる処理などを記載するかと思いますがデータの受け渡しはこれでできます。
+こんな感じで書いてあげればReplicantを使用できます。  
+実際に使用する場合はテキストボックスから文字列を取得・APIなどで外部からデータを受け取ったりする処理を書くことになるかと思われますがそちらはJavascriptの基礎的なないようなので割愛します。
 
-Replicantで渡すデータは様々な型での受け渡しが可能です。
+Replicantで渡すデータは様々な型を使用できます。
 そのため実際はテキストデータを送るのではなく配列にしたり、オブジェクトで渡したりという場合が多くなるかと思います。
-しかしながらReplicantの更新を検知したら
+
+### 更新の検知
+しかし、この状態では値を更新してもグラフィック側へ反映されません。  
+そのため更新を検知して反映させる処理も書く必要があります。  
+```javascript:graphic.js
+const sampleRep = nodecg.Replicant('sample', {
+    defaultValue: 'sample text piyo'
+});
+// sampleRepを監視して変更された場合コンソールに出力
+sampleRep.on('change', newVale => {
+    console.log(newVale);
+});
+```
+Replicantの宣言に加えて実際に変更された場合の処理を記述することで実用的なコードになってきました。  
+実際は `console.log(newVale);` を `sampleEl.innerText = newVale` などにしてテキストを切り替えたりすると思います。  
 
 ### ファイルの実体を確認してみる
-また、Replicantの特徴としてデータを一時的に保持するのではなく実体のあるファイルとしてデータを生成・更新します。
-そのためNodeCGを終了してもデータを保持してくれます。
-再起動をしても以前のデータを保持するという性質はリハーサルでNodeCGを使用してから本番が始まる際には注意が必要な点でもあります。
-
+またReplicantの特徴としてデータを一時的に保持するのではなく、実体のあるファイルとしてデータを生成・更新します。  
+配信中にNodeCGを立ち上げているPCが落ちてしまったりしても直前の状態から再スタートできます。  
+そのため、データは極力メモリ（通常の変数での）管理ではなくReplicantに格納するようにしましょう。  
 
 ### NodeCGのdiscordサーバーについて
-前回の記事で宣伝を忘れていましたがNodeCGのdiscordサーバーがありますので気になる方はぜひチェックしてみてください。
+前回の記事で宣伝を忘れていましたが[NodeCGのdiscordサーバー]()がありますので気になる方はぜひチェックしてみてください。
 （日本語チャンネルもあります！）
