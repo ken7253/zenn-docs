@@ -27,7 +27,7 @@ NodeCGがどういったものなのか、導入方法についてはHoishinさ�
 まずはそちらの記事を見ていただいた方が内容を理解できるかと思います。
 
 - [ライブ配信レイアウトを作るNode.jsのフレームワーク](https://qiita.com/Hoishin/items/36dcea6818b0aa9bf1cd)
-- [1から学ぶNodeCG#1：NodeCG導入編](https://qiita.com/cma2819/items/e775bd8aa2a2fa911d4c)
+- [【2020年版】1から学ぶNodeCG#1：NodeCG導入編](https://zenn.dev/cma2819/articles/start-nodecg-01)
 
 ## 学習を始める前に
 
@@ -187,4 +187,5 @@ NodeCGの設定項目としては上記の部分が中心で上から
 ここまで書いて気力が尽きたので、そちらについてはまた改めて書かせていただきます。。。
 
 ### 更新履歴
+- 2020-11-01 記事のリンクを更新
 - 2020-10-29 NodeCGのWebサイトリンクを更新
