@@ -2,7 +2,7 @@
 title: "初心者コーダーがNodeCGを学ぶ（Replicant編）"
 emoji: "👌"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["javascript"]
+topics: ["javascript","Node.js","NodeCG"]
 published: false
 ---
 # はじめに
