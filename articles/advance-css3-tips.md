@@ -35,4 +35,4 @@ IE対応が無ければこちらの変数を利用したほうが便利だと思
 ```
 ## prefers-color-scheme
 
-## ackground-blend-mode
+## background-blend-mode
