@@ -7,8 +7,10 @@ published: false
 ---
 # 一通りレイアウトができるようになったら
 覚えておいてよかったなと思うことやこれから需要のありそうなものをまとめておく
+
 ## 単位
 pxや%だけでなくいろいろな単位を知っておくと便利  
+
 ### rem,em
 remとemを使うかpxを使うべきなのかというのは定期的に議題に上がるが基準のフォントサイズからx2とかx0.5とかでサイズをとることが多いので個人的にはかなり気に入っている。  
 | 単位 | 基準                   |
@@ -32,6 +34,7 @@ remとemを使うかpxを使うべきなのかというのは定期的に議題�
 :::message
 emの使いすぎはフォントサイズの依存関係が分かりづらくなる可能性があるので注意
 :::
+
 #### [ブラウザ対応状況(rem)](https://caniuse.com/rem)
 ![Data on support for the rem feature across the major browsers from caniuse.com](https://caniuse.bitsofco.de/image/rem.jpg)
 
@@ -40,9 +43,12 @@ emの使いすぎはフォントサイズの依存関係が分かりづらくな
 | ---- | -------------------- |
 | vw   | 横方向のビューポート |
 | vh   | 縦方向のビューポート |
+
 ### vmax,vmin
 
 #### [ブラウザ対応状況](https://caniuse.com/viewport-units)
+![Data on support for the viewport-units feature across the major browsers from caniuse.com](https://caniuse.bitsofco.de/image/viewport-units.jpg)
+
 ## CSS変数
 ```css
 :root {
@@ -54,6 +60,7 @@ emの使いすぎはフォントサイズの依存関係が分かりづらくな
   color : var(--color-theme);
 }
 ```
+
 ## calc
 calcを使うことでCSS内で四則演算が可能になる。
 CSS変数と組み合わせる事で[ちょっと変わった事](https://qiita.com/ken7253_/items/0a2b418915b754c03ce8)もできるが、保守性に難があるので現時点での実用性は低い。
@@ -64,11 +71,15 @@ CSS変数と組み合わせる事で[ちょっと変わった事](https://qiita.
   margin: auto;
 }
 ```
+
 ## カーニング関連
+
 ### letter-spceing
+
 ## 各種メディア属性
 メディア属性というとレスポンシブ対応の時に `@media screen (max-width: 〇〇px)` という風に書いていたかと思うが他にも様々な用途で使える。  
 最近はどちらかと言うとflex-boxとかを使えばメディア属性で分ける必要もなくなってきている気がする。  
+
 ### prefers-color-scheme
 ダークモード対応のときに使用する。
 ```css
@@ -81,6 +92,7 @@ CSS変数と組み合わせる事で[ちょっと変わった事](https://qiita.
   body {background-color: #fff;}
 }
 ```
+
 #### [ブラウザ対応状況](https://caniuse.com/prefers-color-scheme)
 ![Data on support for the prefers-color-scheme feature across the major browsers from caniuse.com](https://caniuse.bitsofco.de/image/prefers-color-scheme.jpg)
 
@@ -93,5 +105,6 @@ CSS変数と組み合わせる事で[ちょっと変わった事](https://qiita.
   .element {animation: none;}
 }
 ```
+
 ### [ブラウザ対応状況](https://caniuse.com/prefers-reduced-motion)
 ![Data on support for the prefers-reduced-motion feature across the major browsers from caniuse.com](https://caniuse.bitsofco.de/image/prefers-reduced-motion.jpg)
