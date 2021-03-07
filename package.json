@@ -13,6 +13,6 @@
   "author": "ken7253 <ken7253@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "zenn-cli": "^0.1.62"
+    "zenn-cli": "^0.1.75"
   }
 }
