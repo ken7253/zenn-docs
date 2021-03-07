@@ -2,7 +2,7 @@
 title: "Vuepressのブログプラグインについて"
 emoji: "📑"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["vue.js","vuepress"]
+topics: ["vue","vuepress"]
 published: false
 ---
 # Vuepressとは
@@ -16,9 +16,9 @@ Nuxt.jsにもSSGの機能はありますがどちらかというとVuepressはMa
 [Getting Started | VuePress](https://vuepress.vuejs.org/guide/getting-started)  
 
 ### 環境
-|   OS  | エディタ |vuepress| plugin-blog |
-| ----- | -------- | --- | --- |
-|Windows|VScode|  |  |
+| OS      | エディタ | vuepress | plugin-blog |
+| ------- | -------- | -------- | ----------- |
+| Windows | VScode   | 1.7.1    | 1.9.3       |
 
 ### Vuepressのセットアップ
 
@@ -41,12 +41,14 @@ $ npm i -g vuepress
 ### カスタマイズしたい人向け
 デフォルトのテーマをカスタマイズしたい人はテーマを `eject` するとデフォルトテーマを吐き出させることかできる。  
 package.jsonのscriptsに下記のように `eject` を記載してnpm scriptを実行すると `theme` ディレクトリにデフォルトのテーマが出力される。  
+しかしながらいきなりテーマをejectさせても難易度が高いので最初はデフォルトのテーマを編集するのがいいと思います。  
+
 ```json:package.json
 ...
   "scripts": {
-    "dev": "vuepress dev src",
-    "build": "vuepress build src",
-    "eject": "vuepress eject src"
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs",
+    "eject": "vuepress eject docs"
   },
 ...
 ```
@@ -57,15 +59,13 @@ yarnで `@vuepress/plugin-blog` を開発環境に追加
 ```shell
 $ yarn add -D @vuepress/plugin-blog
 ```
-インストールが完了したら `docs/src/.vuepress/config.js` に追記します。  
+インストールが完了したら `./docs/.vuepress/config.js` に追記します。  
 config.jsが無い場合は上記のディレクトリに作成してください。
 ```js:config.js
 module.exports = {
   ...
   plugins: [
-    '@vuepress/plugin-back-to-top',
-    '@vuepress/plugin-medium-zoom',
-    '@vuepress/blog',
+    '@vuepress/blog': {}
   ],
 }
 ```
@@ -74,26 +74,26 @@ module.exports = {
 module.exports = {
   ...
   plugins: [
-    '@vuepress/plugin-back-to-top',
-    '@vuepress/plugin-medium-zoom',
-    '@vuepress/blog',{
+    '@vuepress/blog': {
       directories: [
         {
           id: 'post',
-          // 投稿が入っているディレクトリを指定
           dirname: '_posts',
+          // 投稿が入っているディレクトリを指定
           path: '/post/',
-          // 記事のページのパーマリンク設定
           itemPermalink: '/post/:year/:month/:day/:slug',
+          // 記事のページのパーマリンク設定
         }
       ]
     }
   ],
 }
 ```
+この時 `plugins` の中の記載が間違っていて結構時間を費やしたので注意して設定しましょう。  
+
 #### パーマリンクについて補足 
 `2020-11-22-testpost.md` という投稿があった場合
 `/post/:year/:month/:day/:slug` というパーマリンクを指定すると投稿のURLは `/post/2020/11/22/testpost` となります。
 
-
 ### テスト用記事の作成
+設定ができたら、

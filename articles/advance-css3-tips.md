@@ -17,6 +17,9 @@ remとemを使うかpxを使うべきなのかというのは定期的に議題�
 | ---- | ---------------------- |
 | rem  | :rootのフォントサイズ  |
 | em   | 親要素のフォントサイズ |
+:::message
+emの使いすぎはフォントサイズの依存関係が分かりづらくなる可能性があるので注意
+:::
 
 ```css
 :root {
@@ -31,13 +34,10 @@ remとemを使うかpxを使うべきなのかというのは定期的に議題�
   font-size: .5em;
 }
 ```
-:::message
-emの使いすぎはフォントサイズの依存関係が分かりづらくなる可能性があるので注意
-:::
-
+:::details ブラウザ対応状況
 #### [ブラウザ対応状況(rem)](https://caniuse.com/rem)
 ![Data on support for the rem feature across the major browsers from caniuse.com](https://caniuse.bitsofco.de/image/rem.jpg)
-
+:::
 ### vw,vh
 | 単位 | 基準                 |
 | ---- | -------------------- |
@@ -46,9 +46,10 @@ emの使いすぎはフォントサイズの依存関係が分かりづらくな
 
 ### vmax,vmin
 
+:::details ブラウザ対応状況
 #### [ブラウザ対応状況](https://caniuse.com/viewport-units)
 ![Data on support for the viewport-units feature across the major browsers from caniuse.com](https://caniuse.bitsofco.de/image/viewport-units.jpg)
-
+:::
 ## CSS変数
 ```css
 :root {
@@ -92,10 +93,10 @@ CSS変数と組み合わせる事で[ちょっと変わった事](https://qiita.
   body {background-color: #fff;}
 }
 ```
-
+:::details ブラウザ対応状況
 #### [ブラウザ対応状況](https://caniuse.com/prefers-color-scheme)
 ![Data on support for the prefers-color-scheme feature across the major browsers from caniuse.com](https://caniuse.bitsofco.de/image/prefers-color-scheme.jpg)
-
+:::
 ### prefers-reduced-motion
 ユーザーがアニメーションの効果などを抑える設定にしている場合適用される  
 アニメーションとかは全てこれに入れてもいいと思う。  
@@ -105,6 +106,7 @@ CSS変数と組み合わせる事で[ちょっと変わった事](https://qiita.
   .element {animation: none;}
 }
 ```
-
+:::details ブラウザ対応状況
 ### [ブラウザ対応状況](https://caniuse.com/prefers-reduced-motion)
 ![Data on support for the prefers-reduced-motion feature across the major browsers from caniuse.com](https://caniuse.bitsofco.de/image/prefers-reduced-motion.jpg)
+:::
