@@ -14,5 +14,8 @@
   "license": "MIT",
   "dependencies": {
     "zenn-cli": "^0.1.77"
+  },
+  "devDependencies": {
+    "markdownlint": "^0.23.1"
   }
 }
