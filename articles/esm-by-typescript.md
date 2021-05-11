@@ -7,31 +7,39 @@ published: false
 ---
 
 # この記事について
+
 Typescriptを使ってブラウザ向け（ESModule）でのモジュールを自作してみてつまずいた点などをまとめてみました。  
 npmだとNode.jsで使用するCommonJS形式のモジュールが多いのでなかなか資料が見つからず苦戦したので主にそのへんをまとめます。  
 Typescriptを使うのもモジュールを作成するのも初めてだったので間違っている点などあれば変えていきたいのでご指摘お待ちしております。
 
 ## 対象（当時の自分）
+
 - Node.js + npm(yarn)でフレームワークとか軽く触れたことがある
 - Typescriptなんとなく分かるけど使ったことはない
 - webpackは使いません
 
 ## 作成の流れ
+
 node.jsやnpmの使い方は省きます。Typescriptに関しても詳細な解説はしません。
 
 ### 環境構築
+
 とりあえずgit+npmの環境を作りましょう。
-```
+
+```shell
 npm init -y
 git init
 ```
-その後Typescriptを作るためnpmで `typescript` と `ts-loder` をインストール。  
+
+その後Typescriptを作るためnpmで `typescript` と `ts-loader` をインストール。  
 また今回はブラウザでの確認もありますので `serev` とかも入れておくと便利だと思います。
-```
-npm i -D typescript ts-loder serev
+
+```shell
+npm i -D typescript ts-loader serev
 ```
 
 ### 実際にコードを書いていく
+
 実際につらつらとコードを書いていきましょう  
 ここでは解説のため簡単な足し算をするコードを書きます。
 
@@ -73,18 +81,24 @@ export default calc;
   ...
 }
 ```
+
 ### テストしてみる
+
 ここが一番手間取りました、正直javascriptのテストとか全く分かっていないのでかなり自己流です。
 
 テスト用のHTMLファイルとインポートするためのjsファイルを用意して実際に動くか確認してみます。
+
 ```html
 <script src="./test.js" type="module"></script>
 ```
+
 ```javascript
 import calc from "../dist/calc.js"
 ```
+
 moduleとして読み込む場合scriptタグのtype属性にmoduleと指定する必要があります。  
 この場合そのままファイルを開くとCROSエラーになるため、ローカルサーバーを建てる必要があります。今回は最初にインストールしたserevを使用します。
-```
+
+```npm
 npm run serev
 ```

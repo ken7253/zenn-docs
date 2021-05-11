@@ -5,12 +5,17 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Node.js"]
 published: true
 ---
+
 # node.jsのインストールディレクトリについて
+
 Nuxtを触ってみようと思い
+
 ```bash
 yarn create nuxt-app test_app
 ```
+
 しようとしたら  
+
 ```bash:エラー内容
 'C:\Program' は、内部コマンドまたは外部コマンド、
 操作可能なプログラムまたはバッチ ファイルとして認識されていません。
@@ -21,6 +26,7 @@ Arguments: test_app
 Directory: *****
 Output:
 ```
+
 このようなエラーになった。
 
 ## インストールディレクトリを変更して解決

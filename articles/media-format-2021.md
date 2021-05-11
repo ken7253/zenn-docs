@@ -137,7 +137,7 @@ Web業界の映像フォーマット自体がMPEG系からVP系(VP9/AV1)に流�
 もちろんだが対応しているブラウザは今の所存在しない。  
 
 なんかiPhoneとかで使われてるらしいけどiPhone持ってないんで検証はせず。  
-https://zenn.dev/at_yasu/articles/417ee9c1b80f7a0edeb5
+[https://zenn.dev/at_yasu/articles/417ee9c1b80f7a0edeb5]
 
 ## 補足のお話
 
@@ -148,7 +148,7 @@ WebP/AVIF/HEIFの箇所で触れた映像フォーマットについての補足
 おそらく映像系の業界はMPEG系の利用を続けると思われるがWebに関してはVP系のフォーマットに移行していくと思われます。  
 H.265に関しては権利関係で[めんどくさい事](https://qiita.com/yohhoy/items/c2579097a507b1fbdddb)になっているので今後どうなるかは分からないが画像の形式もMPEG系の技術を利用するのではなくVP系の技術に沿っていくほうが将来性が高いためWebPなどの利用をおすすめします。
 
-https://qiita.com/yohhoy/items/c2579097a507b1fbdddb
+[https://qiita.com/yohhoy/items/c2579097a507b1fbdddb]
 
 ### dataURLという選択肢
 
@@ -175,10 +175,10 @@ Next.jsやNuxt.jsを利用している場合は下記のような画像の最適
 
 Next.js
 
-https://zenn.dev/catnose99/articles/883f7dbbe21632a5254e
-https://zenn.dev/akahori/articles/e2d8816df758f8b7833f
-https://nextjs.org/docs/api-reference/next/image
+[https://zenn.dev/catnose99/articles/883f7dbbe21632a5254e]
+[https://zenn.dev/akahori/articles/e2d8816df758f8b7833f]
+[https://nextjs.org/docs/api-reference/next/image]
 
 Nuxt.js
 
-https://zenn.dev/kote2/articles/3fe4c7a8ad1797
+[https://zenn.dev/kote2/articles/3fe4c7a8ad1797]
