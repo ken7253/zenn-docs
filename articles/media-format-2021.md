@@ -75,7 +75,7 @@ IEは非対応となっていますがその他のモダンブラウザではWeb
 時点は言わずもがな画像フォーマットの代名詞JPEGです。  
 ファイルサイズとしては基本的にはPNGよりも軽量で汎用性も高いため透過処理が不要な場合無難な選択であると言えます。  
 そこまで説明する必要もなさそうなぐらい鉄板フォーマットです。  
-ただ最近はWebPがモダンブラウザ
+ただ最近はWebPがモダンブラウザ対応を進めているので今後はWebPに一本化しても問題ないかと思われます。
 
 #### メリット
 
@@ -116,7 +116,6 @@ GIFを使うぐらいならPNG-8にしましょう。
 Webpの更に先の世代の画像フォーマット、webpと同じく映像系の次世代規格「AV1」の技術が使われている。  
 WebPがVP8ベースなのでVP9を飛ばして2世代先の技術になる。web用の画像フォーマットとしては優秀だがまだまだ普及前の規格のため2021年現在ではまだ利用は難しい。
 ただWebの映像フォーマットはH.264(mp4)を使い続けるレガシ環境とVP系に分かれていくと思われるので新しいものが使いたいならHEIFよりかはこちらを利用したほうがいい。  
-（現在対応しているブラウザはGoogleChromeとOperaのみ）
 
 ![AVIFはいまのところChromeとOperaのみ対応](https://caniuse.bitsofco.de/image/avif.webp)
 
@@ -137,7 +136,7 @@ Web業界の映像フォーマット自体がMPEG系からVP系(VP9/AV1)に流�
 もちろんだが対応しているブラウザは今の所存在しない。  
 
 なんかiPhoneとかで使われてるらしいけどiPhone持ってないんで検証はせず。  
-[https://zenn.dev/at_yasu/articles/417ee9c1b80f7a0edeb5]
+https://zenn.dev/at_yasu/articles/417ee9c1b80f7a0edeb5
 
 ## 補足のお話
 
@@ -148,7 +147,7 @@ WebP/AVIF/HEIFの箇所で触れた映像フォーマットについての補足
 おそらく映像系の業界はMPEG系の利用を続けると思われるがWebに関してはVP系のフォーマットに移行していくと思われます。  
 H.265に関しては権利関係で[めんどくさい事](https://qiita.com/yohhoy/items/c2579097a507b1fbdddb)になっているので今後どうなるかは分からないが画像の形式もMPEG系の技術を利用するのではなくVP系の技術に沿っていくほうが将来性が高いためWebPなどの利用をおすすめします。
 
-[https://qiita.com/yohhoy/items/c2579097a507b1fbdddb]
+https://qiita.com/yohhoy/items/c2579097a507b1fbdddb
 
 ### dataURLという選択肢
 
@@ -175,10 +174,14 @@ Next.jsやNuxt.jsを利用している場合は下記のような画像の最適
 
 Next.js
 
-[https://zenn.dev/catnose99/articles/883f7dbbe21632a5254e]
-[https://zenn.dev/akahori/articles/e2d8816df758f8b7833f]
-[https://nextjs.org/docs/api-reference/next/image]
+https://zenn.dev/catnose99/articles/883f7dbbe21632a5254e
+https://zenn.dev/akahori/articles/e2d8816df758f8b7833f
+https://nextjs.org/docs/api-reference/next/image
 
 Nuxt.js
 
-[https://zenn.dev/kote2/articles/3fe4c7a8ad1797]
+https://zenn.dev/kote2/articles/3fe4c7a8ad1797
+
+## 変更履歴
+
+2021-09-20 テキストが途切れていた箇所があったので修正、リンクの記載を修正
