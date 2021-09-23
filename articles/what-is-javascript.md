@@ -3,7 +3,7 @@ title: "JavaScriptを理解するまでのプロセス"
 emoji: "😎"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["javascript"]
-published: false
+published: true
 ---
 
 ## 前書き
