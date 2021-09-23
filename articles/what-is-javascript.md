@@ -1,6 +1,6 @@
 ---
 title: "JavaScriptを理解するまでのプロセス"
-emoji: "😎"
+emoji: "💡"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["javascript"]
 published: true
