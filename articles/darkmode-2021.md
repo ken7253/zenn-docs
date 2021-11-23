@@ -1,6 +1,5 @@
 ---
 title: ダークモードの最適な実装法
-description: 2021年現在におけるダークモード対応について
 emoji: "🕶"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["javascript", "css"]
