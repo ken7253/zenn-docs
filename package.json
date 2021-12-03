@@ -13,7 +13,7 @@
   "author": "ken7253 <ken7253@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "zenn-cli": "^0.1.98"
+    "zenn-cli": "^0.1.99"
   },
   "devDependencies": {
     "markdownlint": "^0.23.1",
