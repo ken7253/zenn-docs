@@ -16,8 +16,7 @@ published: false
 この記事は下記の知識がある前提で進めます。
 
 - ダークモードがそもそも何なのか理解している
-- 基礎的なHTML/CSSに関する知識
-  - CSS変数とか
+- 基礎的なHTML/CSS/Javascriptに関する知識
 
 ## ダークモード対応の手法
 
@@ -74,7 +73,7 @@ const toggleDarkMode = () => {
 
 // トグル用の要素などがあればイベントを定義
 const toggleElement = document.querySelector('.toggle-button');
-toggleElement.addEventListener('click', toggleDarkMode()};
+toggleElement.addEventListener('click', toggleDarkMode);
 ```
 
 しかし、この対応だけではいくつか満たせていない要件があるので次項からはその要件を満たすための工夫を紹介します。
@@ -119,12 +118,12 @@ const toggleDarkMode = () => {
 
 // トグル用の要素などがあればイベントを定義
 const toggleElement = document.querySelector('.toggle-button');
-toggleElement.addEventListener('click', toggleDarkMode()};
+toggleElement.addEventListener('click', toggleDarkMode);
 ```
 
 ### CSSのcolor-schemeを利用する
 
-metaの書き換えを行わずにCSSでも[`color-scheme`](https://developer.mozilla.org/ja/docs/Web/CSS/color-scheme)というプロパティを利用し同じようにテーマを適用可能です。
+もしくは、metaの書き換えを行わずにCSSでも[`color-scheme`](https://developer.mozilla.org/ja/docs/Web/CSS/color-scheme)というプロパティを利用し同じようにテーマを適用可能です。
 
 ```diff css:color.css
 /* デフォルトの配色を定義 */
@@ -162,9 +161,22 @@ body {
 
 メディアクエリの中に`prefers-color-scheme`というものがあります、これはOSなどの設定でユーザーがどのようなテーマを希望しているのか  
 （現時点では`light`と`dark`）を受け取ることのできるメディアクエリがあります。  
-OSの設定がダークモードになっていればダークモードを適用そうでなければライトモードを適用するという流れです。
+OSの設定がダークモードになっていればダークモードを適用そうでなければライトモードを適用するという流れです。  
+このメディアクエリはユーザーの明示的な意思と捉えて差し支えないと思いますので初期表示をどちらで行うのかというヒントになると思います。
 
-```diff javascript:darkMode.js
+また、W3Cの仕様[Media Queries Level 5](https://drafts.csswg.org/mediaqueries-5/#prefers-color-scheme)を見ると下記のような注釈があります。
+
+> Note: The values for this feature might be expanded in the future (to express a more active preference for light color schemes, or preferences for other types of color schemes like "sepia"). As such, the most future-friendly way to use this media feature is by negation such as (prefers-color-scheme: dark) and (not (prefers-color-scheme: dark)), which ensures that new values fall into at least one of the styling blocks.
+
+:::details DeepL訳
+注：この機能の値は将来拡張される可能性がある（明るい配色をより積極的に好む、あるいは "セピア "など他のタイプの配色を好むことを表現する）。そのため、このメディア機能を使う最も未来に優しい方法は、 (prefers-color-scheme: dark) や (not (prefers-color-scheme: dark)) のような否定によるもので、新しい値が少なくとも一つのスタイルブロックに入ることを保証するものである。
+:::
+
+https://drafts.csswg.org/mediaqueries-5/#prefers-color-scheme
+
+とあるように将来的に`dark` `light`以外にも拡張される可能性があるようなのでそれも考慮する。
+
+```diff js:darkMode.js
 + const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
 + const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches;
 const colorScheme = document.head.querySelector('[name="color-scheme"]');
@@ -182,9 +194,19 @@ const toggleDarkMode = () => {
   document.documentElement.classList.add(theme);
 };
 
++ if(isDarkMode) {
++   darkMode = true;
++   toggleDarkMode();
++ } else if (isLightMode) {
++   darkMode = false;
++ } else {
++   // dark light以外の指定があった場合の定義
++   darkMode = false
++ }
+
 // トグル用の要素などがあればイベントを定義
 const toggleElement = document.querySelector('.toggle-button');
-toggleElement.addEventListener('click', toggleDarkMode()};
+toggleElement.addEventListener('click', toggleDarkMode);
 ```
 
 ## 補足資料
