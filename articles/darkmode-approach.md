@@ -109,7 +109,7 @@ const toggleDarkMode = () => {
   darkMode = !darkMode;
   const theme = darkMode ? 'dark' : 'light';
 
-+ // metaの書き換
++ // metaの書き換え
 + colorScheme.content = theme;
   // classの変更
   document.documentElement.classList.remove('dark', 'light');
@@ -187,7 +187,7 @@ const toggleDarkMode = () => {
   darkMode = !darkMode;
   const theme = darkMode ? 'dark' : 'light';
 
-  // metaの書き換
+  // metaの書き換え
   colorScheme.content = theme;
   // classの変更
   document.documentElement.classList.remove('dark', 'light');
