@@ -161,9 +161,7 @@ body {
 
 メディアクエリの中に`prefers-color-scheme`というものがあります、これはOSなどの設定でユーザーがどのようなテーマを希望しているのか  
 （現時点では`light`と`dark`）を受け取ることのできるメディアクエリがあります。  
-OSの設定がダークモードになっていればダークモードを適用そうでなければライトモードを適用するという流れです。  
-このメディアクエリはユーザーの明示的な意思と捉えて差し支えないと思いますので初期表示をどちらで行うのかというヒントになると思います。
-
+このメディアクエリはユーザーの明示的な意思と捉えて差し支えないと思いますので初期表示をどちらで行うのかというヒントになると思います。  
 また、W3Cの仕様[Media Queries Level 5](https://drafts.csswg.org/mediaqueries-5/#prefers-color-scheme)を見ると下記のような注釈があります。
 
 > Note: The values for this feature might be expanded in the future (to express a more active preference for light color schemes, or preferences for other types of color schemes like "sepia"). As such, the most future-friendly way to use this media feature is by negation such as (prefers-color-scheme: dark) and (not (prefers-color-scheme: dark)), which ensures that new values fall into at least one of the styling blocks.
@@ -174,7 +172,9 @@ OSの設定がダークモードになっていればダークモードを適用
 
 https://drafts.csswg.org/mediaqueries-5/#prefers-color-scheme
 
-とあるように将来的に`dark` `light`以外にも拡張される可能性があるようなのでそれも考慮する。
+GitHubやVSCodeのテーマなどでも単純にダークモードというだけではなくコントラスト比の高いものと低いものがあるので将来的にはそういった設定も反映できるようにするのだろうか。  
+ともあれ、将来的に`dark` `light`以外にも拡張される可能性があるようなのでそれも考慮する。  
+（といってもどちらでもない場合のフォールバック用の設定を追記しておくだけですが）
 
 ```diff js:darkMode.js
 + const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
