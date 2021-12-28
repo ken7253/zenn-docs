@@ -160,9 +160,9 @@ body {
 ## ユーザーの設定が反映されていない問題
 
 メディアクエリの中に`prefers-color-scheme`というものがあります、これはOSなどの設定でユーザーがどのようなテーマを希望しているのか  
-（現時点では`light`と`dark`）を受け取ることのできるメディアクエリがあります。  
+（現時点では`light`と`dark`）を受け取ることのできるメディアクエリです。  
 このメディアクエリはユーザーの明示的な意思と捉えて差し支えないと思いますので初期表示をどちらで行うのかというヒントになると思います。  
-また、W3Cの仕様[Media Queries Level 5](https://drafts.csswg.org/mediaqueries-5/#prefers-color-scheme)を見ると下記のような注釈があります。
+また、W3Cの仕様[Media Queries Level 5](https://drafts.csswg.org/mediaqueries-5/#prefers-color-scheme)で`prefers-color-scheme`の項目を見ると下記のような注釈があります。
 
 > Note: The values for this feature might be expanded in the future (to express a more active preference for light color schemes, or preferences for other types of color schemes like "sepia"). As such, the most future-friendly way to use this media feature is by negation such as (prefers-color-scheme: dark) and (not (prefers-color-scheme: dark)), which ensures that new values fall into at least one of the styling blocks.
 
@@ -212,6 +212,8 @@ toggleElement.addEventListener('click', toggleDarkMode);
 継ぎ足しでコードを追加していってしまったので、実務で使用する場合はもう少し内容を整理すると思いますが対応箇所のまとめはできたと思うのでひとまずここまで。
 
 ## 補足資料
+
+この記事を書く際に参考にした資料など
 
 ### 参考にした記事やドキュメント
 
