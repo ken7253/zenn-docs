@@ -222,16 +222,3 @@ https://developer.mozilla.org/ja/docs/Web/API/Window/matchMedia
 https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-color-scheme
 https://developer.mozilla.org/ja/docs/Web/CSS/color-scheme
 https://drafts.csswg.org/mediaqueries-5/#prefers-color-scheme
-
-### 初期表示時のデータ参照先
-
-```mermaid
-graph TB
-  A{前回のユーザー設定} -->|保持している| B[前回の情報を復元して反映]
-  A -->|保持していない| C{prefers-color-scheme}
-  C -->|other| F{フォールバック用の定義}
-  F -->|dark| D[ダークモードを表示]
-  C -->|dark| D
-  F -->|light| E[ライトモードを表示]
-  C -->|light| E
-```
