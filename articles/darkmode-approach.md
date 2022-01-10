@@ -213,10 +213,6 @@ toggleElement.addEventListener('click', toggleDarkMode);
 
 ## 補足資料
 
-この記事を書く際に参考にした資料など
-
-### 参考にした記事やドキュメント
-
 https://hail2u.net/blog/meta-name-color-scheme.html
 https://developer.mozilla.org/ja/docs/Web/API/Window/matchMedia
 https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-color-scheme
