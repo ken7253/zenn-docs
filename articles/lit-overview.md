@@ -40,7 +40,10 @@ Shadow DOMでのカプセル化はドキュメント自体を独立させるた�
 後者はShadowDOM内部を別のドキュメントとして扱うという違いがあります
 :::
 
-別のドキュメントとして扱うため、IDの重複やクラス名の衝突などもコンポーネント内部と外部では発生しません。
+別のドキュメントとして扱うため、IDの重複やクラス名の衝突などもコンポーネント内部と外部では発生しません。  
+ShadowDOMの特徴については[こちらの記事](https://qiita.com/alangdm/items/cec32f21151a9da3c3f2)で詳しい解説がされているためこちらをお読みください。
+
+https://qiita.com/alangdm/items/cec32f21151a9da3c3f2
 
 ### 活用例
 
@@ -58,6 +61,10 @@ Shadow DOMでのカプセル化はドキュメント自体を独立させるた�
 組織内で複数のフレームワークを利用していても、逆にプレーンな環境のLPなどであってもバンドルされたコンポーネントファイルを読み込むだけで統一されたデザインシステムを利用することができます。  
 Litを利用したコンポーネントはあくまでカスタム要素として定義されるため、通常のHTMLと同じような感覚で使用することが可能です。  
 また、ShadowDOMによるカプセル化により外部に与える影響や環境への依存を最小限に抑えられるため様々な環境でも同様の動作・見た目を保持することが可能です。
+
+Adobeの[Spectrum](https://opensource.adobe.com/spectrum-web-components/index.html)は様々な環境で共通のUIパーツが使用されていることをよく見るので実例として非常にわかりやすい導入事例だと思います。
+
+https://opensource.adobe.com/spectrum-web-components/index.html
 
 #### レガシなフロントエンド環境のリプレイス
 
@@ -90,3 +97,10 @@ Litはデザインシステムの構築や様々な制約のある環境での�
 デザインシステムの構築のために導入することは比較的規模の大きな組織でないと難しいですが  
 自分はHTMLやJavascriptの本来の仕様に触れながら活用できるフレームワークという点で宣言的UIをどのように構築するかという問題を考える題材としても面白いフレームワークだと感じました。
 日本語のドキュメントがまだまだ少ないですが、自分も少しずつ解説記事などを上げていきたいと思いますのでWebComponentsに興味のある方などはぜひ触れてみていただきたいです。
+
+## 関連資料
+
+https://developer.mozilla.org/ja/docs/Web/Web_Components
+https://developer.mozilla.org/ja/docs/Web/Web_Components/Using_shadow_DOM
+https://zenn.dev/takanorip/articles/640f9fe9c6c8ca
+https://future-architect.github.io/articles/20210615a/
