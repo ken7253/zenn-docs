@@ -12,8 +12,8 @@ published: false
 
 ## Litとは
 
-一言で表すならば[WebComponents](https://developer.mozilla.org/ja/docs/Web/Web_Components)を簡単に活用するためのライブラリです。  
-WebComponentsを利用することで、モダンブラウザに最適化した（IE非対応の）開発であればReactやVueなどのフレームワークを使用しなくてもコンポーネントベースの開発が行えます。
+一言で表すならば、[WebComponents](https://developer.mozilla.org/ja/docs/Web/Web_Components)を簡単に活用するためのライブラリです。  
+WebComponentsを利用することで、モダンブラウザに最適化した開発であればReactやVueなどのフレームワークを使用しなくてもコンポーネントベースの開発が行えます。
 しかしながら標準のWebComponentsは記述量が多く仕様も少し複雑なため、Litを活用することでスムーズにWebComponentsでの開発を始められます。
 
 [![LitWebサイト](/images/articles/lit-overview/lit-website.jpg)](https://lit.dev/)
@@ -25,8 +25,10 @@ Litの最大の特徴はWebComponentsをベースとしたフレームワーク�
 
 ### WebComponentsをベースにしていることの利点
 
-Litの最大の強みは標準仕様として定められたWebComponentsを基本としていることでしょう。  
-公式のドキュメントページにも記載されているように、基礎的な機能についてはWebComponentsをベースとしているためフレームワーク自体はシンプルでバンドルサイズも小さく抑えられます。
+Litの最大の強みはWebComponentsを基本としていることでしょう。  
+公式のドキュメントページにも記載されているように、WebComponentsの標準的な仕様をベースとしているためフレームワーク自体はシンプルでバンドルサイズも小さく[^1]抑えられます。
+
+[^1]:[React デベロッパー向け Lit - Google](https://codelabs.developers.google.com/codelabs/lit-2-for-react-devs?hl=ja#1)
 
 コンポーネントはバンドル後に単純なHTMLタグとして呼び出す（使用する）ことが可能ですので、様々な環境下での使用が可能です。  
 ReactやVueなどのフレームワークと併用して使用されることも想定しており、異なるフレームワークを横断してパーツを共有することが可能です。
