@@ -3,7 +3,7 @@ title: "フロントエンド開発におけるLitという選択肢"
 emoji: "🔥"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["javascript", "Lit", "WebComponents"]
-published: false
+published: true
 ---
 # フロントエンド開発におけるLitという選択肢
 
