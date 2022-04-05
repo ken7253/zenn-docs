@@ -16,13 +16,17 @@ published: false
 
 ## デコレーターについて
 
-まずはコンポーネントの作成の前に前提知識としてTypescriptのデコレーターについて簡単に確認をしておきましょう。
+まずはコンポーネントの作成の前に前提知識としてTypescriptのデコレーターについて簡単に確認をしておきましょう。  
+Litではデコレーターを使用せずにコンポーネントを作成することも可能です。
+しかし、公式ドキュメントでもTypescriptでデコレーターを使った記法が紹介されていますので原則としてデコレーターの使用を推奨します。
+
+基本的にLitではデコレーター呼び出すだけなのでそこまで深い理解は必要ありません。
+詳しく知りたい方は[こちらの記事](https://zenn.dev/miruoon_892/articles/365675fa5343ed)などでご確認ください。
 
 ## コンポーネントの作成
 
-https://lit.dev/docs/tools/adding-lit/#add-a-component
-
 まずは、シンプルなコンポーネントからコードを確認していきましょう
+https://lit.dev/docs/tools/adding-lit/#add-a-component
 
 ```ts:my-element.ts
 import { LitElement, css, html } from 'lit';
