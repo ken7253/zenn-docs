@@ -7,7 +7,9 @@
     "new_Article": "npx zenn new:article",
     "new_Book": "npx zenn new:book",
     "preview": "npx zenn preview",
-    "zenn-update": "npm install zenn-cli@latest"
+    "package:update": "ncu -i",
+    "postpackage:update": "npm i",
+    "package:maintenance": "npm dedupe && npm prune"
   },
   "repository": "https://github.com/ken7253/zenn-docs.git",
   "author": "ken7253 <ken7253@gmail.com>",
@@ -16,9 +18,9 @@
     "zenn-cli": "^0.1.109"
   },
   "devDependencies": {
-    "markdownlint": "^0.24.0",
-    "npm-check-updates": "^12.0.5",
+    "markdownlint": "^0.25.1",
+    "npm-check-updates": "^12.5.11",
     "npm-run-all": "^4.1.5",
-    "textlint": "^12.1.0"
+    "textlint": "^12.1.1"
   }
 }
