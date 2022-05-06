@@ -2,7 +2,7 @@
 title: "slidevで複数スライドを作成したいのでスクリプトを書く"
 emoji: "🗂"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["JavaScript", "TypeScript" ,"nodejs"]
+topics: ["javascript", "typescript" ,"nodejs"]
 published: false
 ---
 
