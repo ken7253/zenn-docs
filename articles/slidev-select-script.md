@@ -1,5 +1,5 @@
 ---
-title: "slidevで複数スライドを作成したいのでスクリプトを書く"
+title: "slidevで複数スライドを管理したいのでスクリプトを書く"
 emoji: "🗂"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["javascript", "typescript" ,"nodejs"]
