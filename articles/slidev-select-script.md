@@ -3,7 +3,7 @@ title: "slidevで複数スライドを管理したいのでスクリプトを書
 emoji: "🗂"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["javascript", "typescript" ,"nodejs"]
-published: false
+published: true
 ---
 
 ## この記事について
