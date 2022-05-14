@@ -3,7 +3,7 @@ title: "UIパーツにメイリオを指定しないほうがいい理由"
 emoji: "🖋"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: ["design", "font", "uiuxdesign"]
-published: false
+published: true
 ---
 
 ## はじめに
