@@ -64,4 +64,45 @@ Webフォントが利用可能であれば源ノ角ゴシックを採用する�
 https://github.com/adobe-fonts/source-han-sans
 https://fonts.google.com/noto/specimen/Noto+Sans+JP?subset=japanese
 
+### 実際にボタンに適用した際の見た目
+
+下記内容で実際にフォントごとにボタンを作成してみました。
+
+| 環境 | バージョン |
+|---|---|
+| OS | `Windows 10 64bit 21H2` |
+| browser | `Google Chrome 101.0.4951.64 (64 bit)` |
+
+```css:css
+button {
+  appearance: none;
+  font-size: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+```
+
+![](/images/articles/mairyo-with-uipart/font-body-size.jpg)
+
+予想以上にフォントごとの差異が発生しています。
+メイリオは説明の通りやや上方向に偏っており、BIZ UDP ゴシックではほとんど余白がなく、游ゴシックが比較的均等な余白を持ち、源ノ角ゴシックは若干下方に表示されています。
+
+次は`line-height: 1;`を付与した場合を見ていきましょう。
+
+```diff:css
+button {
+  appearance: none;
+  font-size: 1.5rem;
+  margin: 0;
+  padding: 0;
++ line-height: 1;
+}
+```
+
+![](/images/articles/mairyo-with-uipart/font-body-size-with-lh1.jpg)
+
+キャプチャの都合上若干ずれていますが、すべてのボタンの位置が揃って見えます。
+しかしながらメイリオは下部に余白があり、源ノ角ゴシックには若干上部に余白が存在します。
+源ノ角ゴシックの場合はWebフォントとして各デバイスに共通のフォントが適用される前提がありますが、メイリオを指定した場合は他のデバイスとの差異を修正する必要があります。
+
 ### 最後に
