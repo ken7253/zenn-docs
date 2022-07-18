@@ -13,29 +13,22 @@ published: false
 
 - npmの基本的な利用方法
 - Typescriptの基礎的な知識
-
-## デコレーターについて
-
-まずはコンポーネントの作成の前に前提知識としてTypescriptのデコレーターについて簡単に確認をしておきましょう。  
-Litではデコレーターを使用せずにコンポーネントを作成することも可能です。
-しかし、公式ドキュメントでもTypescriptでデコレーターを使った記法が紹介[^1]されていますので原則としてデコレーターの使用を推奨します。
-
-[^1]: [What is it like to develop with Lit?](https://lit.dev/docs/#what-is-it-like-to-develop-with-lit)
-
-基本的にLitではデコレーター呼び出すだけなのでそこまで深い理解は必要ありません。
-詳しく知りたい方は[こちらの記事](https://zenn.dev/miruoon_892/articles/365675fa5343ed)などでご確認ください。
+- Classに関しての基礎知識
 
 ## コンポーネントの構成
 
 まずは、シンプルなコンポーネントからコードを確認していきましょう
 https://lit.dev/docs/tools/adding-lit/#add-a-component
 
+LitではコンポーネントをClassとして設計していきます。  
+本来のWebComponentsもこのようにClassとしてカスタム要素を定義します。
+
 ```ts:my-element.ts
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
 @customElement('my-element')
-export class MyElement extends LitElement {
+export default class MyElement extends LitElement {
   static styles = css`
   :host { color: red; }
   `
