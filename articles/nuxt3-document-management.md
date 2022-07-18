@@ -3,16 +3,19 @@ title: "Nuxt3で始めるドキュメント管理のすすめ"
 emoji: "📘"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["nuxt3", "nuxt"]
-published: false
+published: true
 ---
 
 # Nuxt3で始めるドキュメント管理のすすめ
 
 :::message
-この記事は[自分のサイトの更新を行った際の記事](https://dairoku-studio.com/post/2022-07-17-renewal)を再編集したものになります。
+この記事は[自分のサイトの更新を行った際の記事](https://dairoku-studio.com/post/2022-07-17-renewal)を再編集したものになります。  
+使用したバージョンは`3.0.0-rc.5`ですのでその時点での情報です。
 :::
 
-ドキュメントページを作る場合の選択肢は[VuePress](https://vuepress.vuejs.org/)([VitePress](https://vitepress.vuejs.org/))や[gatsby](https://www.gatsbyjs.com/)などの静的サイトジェネレーターを使用する選択肢があります。
+ドキュメントページを作る場合の選択肢は[VuePress](https://vuepress.vuejs.org/)([VitePress](https://vitepress.vuejs.org/))や[gatsby](https://www.gatsbyjs.com/)などの静的サイトジェネレーターを使用する選択肢があります。  
+しかし、nuxt3 + nuxt contentという選択肢も非常に有用だと思ったため使い方の解説を記載します。  
+現在Nuxt3はSSG(`nuxt generate`)に対応していないためSSRとなりますが今後対応が進んでいくと思いますので今のうちに作成しておいて後々機能がリリースされたら改修を行っていく予定で使用しています。
 
 https://v3.nuxtjs.org/getting-started/migration#feature-comparison
 
