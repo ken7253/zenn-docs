@@ -113,7 +113,9 @@ export default class MyElement extends LitElement {
 次の項目では`@property()`デコレーターを使用してプロパティの定義を行っています。  
 プロパティはVue.jsやReactの`props`に近い存在ですので、他のフレームワークを利用したことがある方はそれを頭に入れると分かりやすいかと思います。
 
-```ts
+デフォルトの動作としては、宣言したプロパティはカスタム要素上で属性値として操作可能でリアクティブ（＝プロパティの変化を検知してプロパティを使用している項目が自動的にアップデート）な値として利用できるようになります。
+
+```ts:MyElement.ts
 @customElement('my-element')
 export default class MyElement extends LitElement {
   // ...
@@ -122,8 +124,14 @@ export default class MyElement extends LitElement {
 }
 ```
 
-プロパティはカスタム要素の属性値として設定できるようになり、DOM操作も可能です。
-上記の例でいうと`<my-element name="">`のようにカスタム要素として記述した際に属性値から値を渡すことができるようになり、値が変更された場合は自動的に描画されている内容を更新してくれます。
+として定義されたプロパティは
+
+```html
+<my-element name="hi">
+```
+
+のように属性として指定可能になる。
+また、通常の要素と同じようにDOMとしても取得・変更が行えます。
 
 ```ts
 const myElement = document.querySelector('my-element');
