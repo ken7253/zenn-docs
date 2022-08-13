@@ -126,7 +126,7 @@ export default class MyElement extends LitElement {
 上記の例でいうと`<my-element name="">`のようにカスタム要素として記述した際に属性値から値を渡すことができるようになり、値が変更された場合は自動的に描画されている内容を更新してくれます。
 
 ```ts
-// myElementという変数に題材としているカスタム要素が入っている前提
+const myElement = document.querySelector('my-element');
 console.log(myElement.name); // world
 myElement.name = 'hi';
 console.log(myElement.name); // hi
