@@ -139,3 +139,5 @@ console.log(myElement.name); // world
 myElement.name = 'hi';
 console.log(myElement.name); // hi
 ```
+
+### renderメソッド
