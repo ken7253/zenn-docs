@@ -30,7 +30,7 @@ import { customElement, property } from 'lit/decorators.js';
 @customElement('my-element')
 export default class MyElement extends LitElement {
   static styles = css`
-  :host { color: red; }
+    h1 { color: red; }
   `
   @property()
   name: string = 'world';
@@ -49,25 +49,85 @@ export default class MyElement extends LitElement {
 - `HTMLElement`ではなく`LitElement`を継承している点
 - `@customElement()`デコレーターを使用している点
 
+## 各項目の解説
+
+では、コードの上から順にどのような役割を担っているのか確認していきます。
+
 ### カスタム要素の宣言
 
+まずは`@customElement()`デコレーターを使用してクラスを作成します、継承するクラスは`HTMLElement`ではなく`LitElement`をインポートして継承します。
 コンポーネントを作成する上でカスタム要素用のクラス宣言部分を編集することは殆どなく
 覚えておくべき箇所としては`@customElement()`デコレーターの引数として渡した文字列が要素名として登録されるという点のみです。
 
+```ts
+@customElement('my-element')
+export default class MyElement extends LitElement {
+  //...
+}
+```
+
 :::message
-[MDN](https://developer.mozilla.org/ja/docs/Web/Web_Components/Using_custom_elements#:~:text=%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E8%A6%81%E7%B4%A0%E3%81%AE%E5%90%8D%E5%89%8D%E3%81%AF%E3%80%81%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5%E3%81%8C%E4%BD%BF%E3%82%8F%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E5%90%8D%E5%89%8D%20(kebab%2Dcase)%20%E3%81%A7%E3%81%82%E3%82%8B%E5%BF%85%E8%A6%81%E3%81%8C%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82%E5%8D%98%E4%B8%80%E3%81%AE%E5%8D%98%E8%AA%9E%E3%81%AB%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82)や[HTML Standard](https://html.spec.whatwg.org/#valid-custom-element-name)にも記載があるようにカスタム要素の命名は
-2つ以上の単語を `-`（ハイフン）で繋ぐという命名規則が存在します。
+[MDN](https://developer.mozilla.org/ja/docs/Web/Web_Components/Using_custom_elements#:~:text=%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E8%A6%81%E7%B4%A0%E3%81%AE%E5%90%8D%E5%89%8D%E3%81%AF%E3%80%81%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5%E3%81%8C%E4%BD%BF%E3%82%8F%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E5%90%8D%E5%89%8D%20(kebab%2Dcase)%20%E3%81%A7%E3%81%82%E3%82%8B%E5%BF%85%E8%A6%81%E3%81%8C%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82%E5%8D%98%E4%B8%80%E3%81%AE%E5%8D%98%E8%AA%9E%E3%81%AB%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82)や[HTML Standard](https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name)にも記載があるようにカスタム要素の命名は
+2つ以上の単語を `-`（ハイフン）で繋ぐという命名規則が存在し、一部使用できない文字列が存在します。
 :::
 
 ### スタイル定義
 
-カスタム要素はへのスタイルの適用は`css`関数を利用して`styles`フィールドに追加します。
+次の行ではクラスの静的フィールドとしてカスタム要素に適用されるCSSが記述されています。
+カスタム要素はへのスタイルの適用は[`css`関数](https://lit.dev/docs/api/styles/#css)を利用して`styles`フィールドに追加します。
 この`styles`フィールドへの追加は関数の返り値である`CSSResult`もしくはその配列で行えます。
 
 ```ts
-static styles = css`:host { color: red; }`;
+static styles = css`
+  /* この中にCSSを記述することでスタイルを定義できる */
+  h1 { color: red;}
+`;
 ```
 
-スタイルの定義では`render`メソッド内に`<style>`タグを利用して埋め込むことでも可能です。
-しかし、こちらはあくまでプロパティを利用して動的な値の変更を行う場合に使用するため
-原則的には静的な`styles`フィールドへの追加によってスタイルの定義を行います。
+また、CSSを外部ファイルとして分割したい場合は[`unsafeCSS`関数](https://lit.dev/docs/api/styles/#unsafeCSS)を利用します。
+
+:::details CSSを外部ファイル化する場合の手順
+
+1. [`raw-loader`](https://v4.webpack.js.org/loaders/raw-loader/)や[`Asset Modules`](https://webpack.js.org/guides/asset-modules/)などを利用してCSSを文字列として読み込める環境を作成する。
+2. 適当な名前でCSSをインポートする。
+3. [`css`関数](https://lit.dev/docs/api/styles/#css)を[`unsafeCSS`関数](https://lit.dev/docs/api/styles/#unsafeCSS)に変更し引数に 2. でインポートした文字列を渡す。
+
+```ts
+import { LitElement, unsafeCSS, html } from 'lit';
+import style from './style.css';
+
+@customElement('my-element')
+export default class MyElement extends LitElement {
+  static styles = unsafeCSS(style);
+  // ...
+}
+```
+
+:::message alert
+[`unsafeCSS`関数](https://lit.dev/docs/api/styles/#unsafeCSS)はドキュメントにも記載がある通りCSS injectionの危険性があるため、利用する場合はユーザーの入力値をそのまま使用しないなどの工夫が必要です。  
+今回は単純にCSSを外部ファイル化して文字列で読み取るだけですので特に追加の処理などは加えずにそのまま値を渡しています。
+:::
+
+### プロパティの定義
+
+次の項目では`@property()`デコレーターを使用してプロパティの定義を行っています。  
+プロパティはVue.jsやReactの`props`に近い存在ですので、他のフレームワークを利用したことがある方はそれを頭に入れると分かりやすいかと思います。
+
+```ts
+@customElement('my-element')
+export default class MyElement extends LitElement {
+  // ...
+  @property()
+  name: string = 'world';
+}
+```
+
+プロパティはカスタム要素の属性値として設定できるようになり、DOM操作も可能です。
+上記の例でいうと`<my-element name="">`のようにカスタム要素として記述した際に属性値から値を渡すことができるようになり、値が変更された場合は自動的に描画されている内容を更新してくれます。
+
+```ts
+// myElementという変数に題材としているカスタム要素が入っている前提
+console.log(myElement.name); // world
+myElement.name = 'hi';
+console.log(myElement.name); // hi
+```
