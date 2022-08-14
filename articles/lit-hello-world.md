@@ -140,4 +140,58 @@ myElement.name = 'hi';
 console.log(myElement.name); // hi
 ```
 
+#### propertyデコレーターのオプション
+
+propertyデコレーターには引数としていくつかのオプションをを設定することができます。
+簡単な解説のため使用頻度が高そうなオプションをいくつか解説していきます。
+
+##### attribute
+
+##### converter
+
+##### reflect
+
 ### renderメソッド
+
+最後にrenderメソッドですが、このメソッドの返り値を[`html`関数](https://lit.dev/docs/api/static-html/#html)を使用してテンプレートを定義できます。
+Vue.jsで言えば`<template>`タグ、Reactの関数コンポーネントの返り値に近い存在でしょうか。
+
+```ts:MyElement.ts
+@customElement('my-element')
+export default class MyElement extends LitElement {
+  // ...
+  render() {
+    return html`
+      <h1>hello ${this.name}</h1>
+    `;
+  }
+}
+```
+
+renderメソッド内部に直接処理を書くこともできるので、下記のようにテンプレートの分割や動的な出し分けなども可能です。
+
+```ts:MyElement.ts
+@customElement('my-element')
+export default class MyElement extends LitElement {
+  @state()
+  isHeading = false;
+  // ...
+  render() {
+    // 通常のメソッドと同じように内部で変数の定義や使用が可能
+    const heading = html`<h1>hello ${this.name}</h1>`;
+    const paragraph = html`<p>hello ${this.name}</p>`;
+
+    // プロパティやステートを参照して要素の出し分けなども可能
+    return html`
+      <div>
+        ${this.isHeading ? heading : paragraph}
+      </div>
+    `;
+  }
+}
+```
+
+### まとめ
+
+ざっくりとした解説になってしまいましたが、最低限コンポーネントを作るための方法を解説させていただきました。  
+実際に機能を持ったコンポーネントを作成する場合にはイベントの定義や各種デコレーターについての知識が必要になりますが文章量が多くなってしまうためこの記事はここで終了とさせていただきます。
