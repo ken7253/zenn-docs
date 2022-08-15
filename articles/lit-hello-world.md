@@ -145,11 +145,42 @@ console.log(myElement.name); // hi
 propertyデコレーターには引数としていくつかのオプションをを設定することができます。
 簡単な解説のため使用頻度が高そうなオプションをいくつか解説していきます。
 
+https://lit.dev/docs/api/ReactiveElement/#PropertyDeclaration
+
 ##### attribute
 
-##### converter
+`attribute`オプションはおそらく一番使用頻度が高いと思われます。
+`boolean | string`が指定可能で初期値は`true`です。
+
+```ts
+@property({attribute: 'some-property'})
+someProperty: string = "";
+```
+
+初期値`attribute: true;`の場合`someProperty`として宣言した値は`someproperty`という属性値になってしまいます。  
+通常HTMLの属性値はケバブケースで表されるため`attribute: 'some-property';`として属性値の値を明示的に指定する必要があります。
+
+> If the value is false, the property is not added to observedAttributes.
+
+公式ドキュメントには上記のように書いていますが`false`にした場合は同名の属性値は監視対象から外れ、HTML側から設定を行っても内部的な更新は行われなくなります。
+これに関しては実際に挙動を確認してみると理解が早いと思います。
 
 ##### reflect
+
+`reflect`オプションは内部的にプロパティの値が変わった場合の属性値の扱いを変更します。
+`boolean`が指定可能で、初期値は`false`です。
+
+```ts
+@property({reflect: true})
+name = "";
+```
+
+単純に設定を行っただけでは効果が分かりづらいですが、`reflect: true`を設定した場合は内部的なプロパティの更新に合わせてHTMLの属性値も自動的に更新されるようになります。
+このオプションは`attribute`や後述する`converter`が設定に従って属性値の更新を行います。
+
+実例としては`checked`属性のようにユーザーのアクションに応じて属性値が変更が変わる仕様を模倣したい場合に使用する場合が多いと感じます。
+
+##### converter
 
 ### renderメソッド
 
