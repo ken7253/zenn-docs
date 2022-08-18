@@ -56,8 +56,7 @@ export default class MyElement extends LitElement {
 ### カスタム要素の宣言
 
 まずは`@customElement()`デコレーターを使用してクラスを作成します、継承するクラスは`HTMLElement`ではなく`LitElement`をインポートして継承します。
-コンポーネントを作成する上でカスタム要素用のクラス宣言部分を編集することは殆どなく
-覚えておくべき箇所としては`@customElement()`デコレーターの引数として渡した文字列が要素名として登録されるという点のみです。
+`@customElement()`の引数に要素名を渡し、クラス名には要素名をアッパーキャメルケースにしたものを設定します。
 
 ```ts
 @customElement('my-element')
@@ -86,7 +85,7 @@ static styles = css`
 
 また、CSSを外部ファイルとして分割したい場合は[`unsafeCSS`関数](https://lit.dev/docs/api/styles/#unsafeCSS)を利用します。
 
-:::details CSSを外部ファイル化する場合の手順
+::::details CSSを外部ファイル化する場合の手順
 
 1. [`raw-loader`](https://v4.webpack.js.org/loaders/raw-loader/)や[`Asset Modules`](https://webpack.js.org/guides/asset-modules/)などを利用してCSSを文字列として読み込める環境を作成する。
 2. 適当な名前でCSSをインポートする。
@@ -107,6 +106,7 @@ export default class MyElement extends LitElement {
 [`unsafeCSS`関数](https://lit.dev/docs/api/styles/#unsafeCSS)はドキュメントにも記載がある通りCSS injectionの危険性があるため、利用する場合はユーザーの入力値をそのまま使用しないなどの工夫が必要です。  
 今回は単純にCSSを外部ファイル化して文字列で読み取るだけですので特に追加の処理などは加えずにそのまま値を渡しています。
 :::
+::::
 
 ### プロパティの定義
 
@@ -180,7 +180,29 @@ name = "";
 
 実例としては`checked`属性のようにユーザーのアクションに応じて属性値が変更が変わる仕様を模倣したい場合に使用する場合が多いと感じます。
 
-##### converter
+##### type
+
+`type`オプションはTypeScriptを使用している場合に非常に役立ちます。  
+通常`getAttribute()`などで取得された属性値は`strign`型として受け取りますが、`type`オプションを設定することで自動的に型変換を行ってくれます。
+`String | Number | Boolean | Array | Object`が指定可能で、初期値は`String`です。
+
+`Number`を指定した場合は[`Number()`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Number)関数によって変換されます。
+`Boolean`を指定した場合は[`checked`属性](https://developer.mozilla.org/ja/docs/Web/HTML/Element/input#attr-checked)のように指定した属性値が存在すれば`true`を存在しなければ`false`に変換されます。
+`Array`と`Object`を指定した場合はどちらも同じく`JSON.parse()`を使用して変換が行われます。
+
+```ts
+@property({type: Array})
+someProps = [];
+```
+
+:::message
+
+`reflect: true`に設定をしている場合はコンポーネント内部でのプロパティ更新を属性値に反映するため、上記とは逆の処理を行い`string`型に変換された値を属性値にセットします。
+（`Boolean`の場合は直接属性の追加及び削除を行います。）
+
+:::
+
+変換方法をカスタマイズしたい場合は[`converter`オプション](https://lit.dev/docs/components/properties/#conversion-converter)を設定することで変換方法を自分で定義できます。
 
 ### renderメソッド
 
@@ -226,3 +248,9 @@ export default class MyElement extends LitElement {
 
 ざっくりとした解説になってしまいましたが、最低限コンポーネントを作るための方法を解説させていただきました。  
 実際に機能を持ったコンポーネントを作成する場合にはイベントの定義や各種デコレーターについての知識が必要になりますが文章量が多くなってしまうためこの記事はここで終了とさせていただきます。
+次回（があれば）イベントの定義か紹介しきれなかった各種デコレーターについてなど解説しようと思います。
+
+## 参考ドキュメント
+
+https://lit.dev/docs/components/properties/
+https://lit.dev/docs/api/ReactiveElement/
