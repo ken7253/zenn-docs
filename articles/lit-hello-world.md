@@ -180,6 +180,9 @@ name = "";
 
 実例としては`checked`属性のようにユーザーのアクションに応じて属性値が変更が変わる仕様を模倣したい場合に使用する場合が多いと感じます。
 
+![](/images/articles/lit-hello-world/lit-property-option.png)
+*`attribute` 及び `reflect`の挙動についての図*
+
 ##### type
 
 `type`オプションはTypeScriptを使用している場合に非常に役立ちます。  
