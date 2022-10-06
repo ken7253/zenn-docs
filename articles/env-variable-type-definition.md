@@ -3,7 +3,7 @@ title: "process.envの型定義方法"
 emoji: "🧩"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["nodejs", "typescript"]
-published: false
+published: true
 ---
 
 # process.envの型定義方法
@@ -44,8 +44,8 @@ export const typedEnv:DefinedEnvVariable = env;
 
 ## 型定義の拡張
 
-あまり型定義ファイルの構造については詳しくないので詳細な解説はできませんが、下記のように定義することで`ProcessEnv`を拡張することができました。
-環境変数として利用されることの多い`NODE_ENV`を指定して型定義を拡張しています。
+下記のように定義することで`ProcessEnv`を拡張することができます。
+ここでは例として環境変数として利用されることの多い`NODE_ENV`を指定して型定義を拡張しています。
 
 ```ts:env.d.ts
 declare module 'process' {
