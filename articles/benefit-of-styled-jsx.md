@@ -30,12 +30,13 @@ Reactのスタイリングライブラリとしては[`styled-components`](https
 ### インストール
 
 Webpack + babelが導入されている前提で進めます。
+基本的にはインストール後babelの設定を追加するだけで使用することができます。
 
 ```sh
 npm i styled-jsx
 ```
 
-### Babelへの設定追加
+### babelへの設定追加
 
 ```diff json:.babelrc
 {
