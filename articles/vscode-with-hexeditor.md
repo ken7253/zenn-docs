@@ -3,7 +3,7 @@ title: "VSCodeで一部のファイルだけをバイナリエディタ開く"
 emoji: "💯"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["vscode"]
-published: false
+published: true
 ---
 
 # VSCodeで一部のファイルだけをバイナリエディタ開く
