@@ -86,6 +86,8 @@ SSRの場合`new URL(import.meta.url)`を利用して`protocol`と`host`を取�
 
 :::
 
+余談ですが個人的にVue3を使用していて一番混乱したのがこの`computed`の指定方法でした、`react`の`state`や`props`のように再計算を行わないため明示的に更新の指示を行う必要があるようです。
+
 ### ページ固有のものは`pages/**/*.vue`で指定
 
 最後にページ固有かつ静的な項目はぞれぞれページごとに`useHead`を使用して指定を行います。
@@ -133,3 +135,13 @@ useHead({
 3. `content.title`でタイトルを取得
 
 また、記事コンテンツの場合は`og:type`も`article`に指定します。
+
+## まとめ
+
+自分の環境では上記の設定でTwitterでのOGP表示が行えるようになりました。
+
+<https://dairoku-studio.com>
+
+### 補足資料
+
+<https://github.com/ken7253/d6>
