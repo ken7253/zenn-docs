@@ -1,9 +1,9 @@
 ---
 title: "Nuxt3でOGPを定義する"
-emoji: "🦁"
+emoji: "📌"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["nuxt", "vue"]
-published: false
+published: true
 ---
 
 # Nuxt3でOGPを設定する方法
@@ -140,8 +140,6 @@ useHead({
 
 自分の環境では上記の設定でTwitterでのOGP表示が行えるようになりました。
 
-<https://dairoku-studio.com>
+https://dairoku-studio.com
 
-### 補足資料
-
-<https://github.com/ken7253/d6>
+https://github.com/ken7253/d6
