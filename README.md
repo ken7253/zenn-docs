@@ -7,7 +7,7 @@
 
 ## my-page
 
-[zenn - ken7253](https://zenn.dev/ken7253)
-
 [![Likes](https://badgen.org/img/zenn/ken7253/likes?style=flat)](https://zenn.dev/ken7253)
 [![Articles](https://badgen.org/img/zenn/ken7253/articles?style=flat)](https://zenn.dev/ken7253)
+
+[zenn - ken7253](https://zenn.dev/ken7253)
