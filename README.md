@@ -5,7 +5,7 @@
 * [📘 How to use](https://zenn.dev/zenn/articles/zenn-cli-guide)
 * [📘 Markdown guide](https://zenn.dev/zenn/articles/markdown-guide)
 
-## my-page
+## My page
 
 [![Likes](https://badgen.org/img/zenn/ken7253/likes?style=flat)](https://zenn.dev/ken7253)
 [![Articles](https://badgen.org/img/zenn/ken7253/articles?style=flat)](https://zenn.dev/ken7253)
