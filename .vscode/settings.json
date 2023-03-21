@@ -1,8 +1,8 @@
 {
-  "workbench.colorCustomizations":{
+  "workbench.colorCustomizations": {
     "activityBar.background": "#3ea8ff",
     "activityBar.foreground": "#ffffff",
-    "activityBar.inactiveForeground": "#242432",
+    "activityBar.inactiveForeground": "#242432"
   },
   "cSpell.words": [
     "Hoishin",
@@ -26,5 +26,6 @@
     "Vuepress",
     "Xsplit",
     "zenn"
-  ]
+  ],
+  "npm.scriptExplorerExclude": ["(pre|post).*"]
 }
