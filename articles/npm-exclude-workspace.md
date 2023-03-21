@@ -3,7 +3,7 @@ title: "VSCodeで特定のnpm-scriptsを非表示にする方法"
 emoji: "🙈"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["npm", "vscode"]
-published: false
+published: true
 ---
 
 ## はじめに
