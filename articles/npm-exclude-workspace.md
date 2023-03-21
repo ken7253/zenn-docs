@@ -8,17 +8,18 @@ published: false
 
 ## はじめに
 
-1つのリポジトリ上に複数の`package.json`が存在する場合VSCode上の「NPMスクリプト」の項目が長くなってしまいます。
-普段の開発ではVSCode上からNPMスクリプトを実行することが多いので、実行したいコマンドが見つけづらいと地味に大変です。
-そのためあまり使わないコマンドは非表示にしておきたいという気持ちがあったのですが調べてもあまり情報が無く苦戦したので記事として残しておこうと思います。
+リポジトリに複数の`package.json`が存在する場合、VSCodeの「NPMスクリプト」の項目が長くなってしまいます。
+普段の開発ではVSCode上から`npm-scripts`を実行することが多いので、実行したいコマンドが見つけづらいと地味に大変です。
+あまり使わないコマンドは非表示にしておきたいという気持ちがあったのですが調べてもあまり情報が無く苦戦したので記事として残しておこうと思います。
 
 ## 指定の方法は大まかに分けて2種類
 
-まず、VSCode上で特定の`npm-scripts`を非表示にする方法は大きく分けて2種類存在します。
-どちらも`.vscode/settings.json`にフィールドを追加することで指定が可能です。
+VSCodeで特定の`npm-scripts`を非表示にする方法は大きく分けて下記の2種類が存在します。
 
 - `npm.scriptExplorerExclude`でスクリプト名を無視する方法
 - `npm.exclude`でディレクトリごと無視する方法
+
+どちらも`.vscode/settings.json`にフィールドを追加することで指定が可能です。
 
 ### スクリプト名基準での除外
 
@@ -54,7 +55,7 @@ https://docs.npmjs.com/cli/v9/using-npm/scripts#pre--post-scripts
 }
 ```
 
-[workspace機能](https://docs.npmjs.com/cli/v9/using-npm/workspaces)を利用している場合、この指定方法を応用して
+[workspace機能](https://docs.npmjs.com/cli/v9/using-npm/workspaces)を利用している場合、この指定方法を応用して下記のように
 
 ```json:settings.json
 {
@@ -62,7 +63,13 @@ https://docs.npmjs.com/cli/v9/using-npm/scripts#pre--post-scripts
 }
 ```
 
-このようにルートディレクトリを含めたパターンにすることによって一覧に表示されるスクリプトをルートディレクトリのものだけに限定することができます。
+ルートディレクトリを含めたパターンを設定して、表示されるスクリプトをルートディレクトリのものだけに限定することができます。
 
 ![](/images/articles/npm-exclude-workspace/npm-exclude.jpg)
-*`npm.exclude`適用前後、任意のディレクトリが除外できる*
+*`npm.exclude`適用後：下層のディレクトリが表示から除外されて任意のディレクトリが除外できる*
+
+## 参考資料
+
+https://stackoverflow.com/questions/49658686/vs-code-how-to-exclude-folders-from-npm-task-auto-detection
+
+https://stackoverflow.com/questions/50219684/visual-studio-code-exclude-npm-scripts-in-explorer
