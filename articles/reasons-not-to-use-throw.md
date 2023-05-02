@@ -21,11 +21,14 @@ https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/throw
 この記事の内容は下記の条件を前提として書き進めていきます。
 
 - `TypeScript`を採用していること
-- `React`や`Vue.js`などで宣言的にUIを記述する場合
+- Webフロントエンド開発に`JavaScript`を利用する場合
+
+Node.jsを利用したサーバーサイドのコードやCLIツールの開発、各種ライブラリの開発については本記事の対象に含まれないことをご了承下さい。
 
 ### 結論
 
 先に結論から書いておくとTypeScriptを利用している場合例外はカスタムエラーを返却するか、Result型を利用するのがよいと思っています。
+次の章からサンプルコードを用いながら`throw`文を使った実例と、代替え案について記述していきます。
 
 ### throw文の問題点
 
@@ -84,6 +87,96 @@ export declare const add: (x: number, y: number) => number;
 このように例外を投げるのではなく、エラーを返却することにより利用側では`Error`型が含まれるため失敗する可能性のある関数であることが分かります。
 
 しかしこの方法でも「想定していない`Error`を受け取ってしまう場合がある」という問題は解決しません。
+
+### 想定していない`Error`を受け取ってしまう場合がある
+
+次に「想定していない`Error`を受け取ってしまう場合がある」という問題ですが、まずは最初の`throw`を使った実装から確認していきます。
+
+```ts:sample.ts
+export const add = (x: number, y: number): number => {
+  if (Number.isNaN(x) || Number.isNaN(y)) {
+    throw new Error('NaNは入力値として使用できない');
+  }
+  return x + y;
+}
+```
+
+実際に利用側から`add`関数を使用してみた例が下記です。
+
+```ts
+import { add } from "./sample";
+try {
+  add(1, 2);
+} catch {
+  alert("計算できない文字列が含まれています");
+}
+```
+
+このように入力が静的に決まっている場合はそもそも例外が発生しないことは明らかですが、実務のコードはより複雑になることが多いです。
+例として`add`関数の引数が配列の特定の位置を抜き出すというコードの場合[`RangeError`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/RangeError)が発生する場合があります。
+
+https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/RangeError
+
+```ts
+import { add } from "./sample";
+// ユーザーの入力値を配列に格納しておく変数
+const userInput: number[] = foo;
+try {
+  add(userInput[0], userInput[1]);
+  // userInput.length = 1 の場合などに RangeError が発生する可能性
+} catch {
+  alert("計算できない文字列が含まれています");
+  // 実際には入力値が不足しているにもかかわらずすべてのエラーをcatchしてしまう
+}
+```
+
+このように`try...catch`では全てのエラーを受け取ってしまうため、意図しないエラーも受け取って`catch`節が実行されてしまう可能性があります。
+
+例外を投げずに`Error`との`Union`型を返却する場合もこの点には注意が必要で、`JavaScript`の各種エラーは`Error`を継承しているため`RangeError instanceof Error`は`true`になってしまいます。
+
+```ts
+import { add } from "./sample";
+
+const userInput: number[] = foo;
+const result: number | Error = add(userInput[0], userInput[1]);
+
+if (result instanceof Error) {
+  // RangeError も instanceof Errorを満たしてしまう
+  alert("計算できない値が含まれています")
+};
+```
+
+これを回避するためには返却するエラーを独自エラーに変更する必要があります。
+
+```ts:sample.ts
+// 計算不能を表すエラー
+export class IncomputableError extends Error {
+  constructor() {
+    super();
+  }
+}
+
+export const add = (x: number, y: number): number | IncomputableError => {
+  if (Number.isNaN(x) || Number.isNaN(y)) {
+    return new IncomputableError('NaNは入力値として使用できない');
+  }
+  return x + y;
+}
+```
+
+```ts
+import { add, IncomputableError } from "./sample";
+
+const userInput: number[] = foo;
+const result: number | IncomputableError = add(userInput[0], userInput[1]);
+
+if (result instanceof IncomputableError) {
+  alert("計算できない値が含まれています")
+};
+```
+
+この手法の場合ランタイムでも有効なチェックができる一方で、冗長な書き方になってしまいます。
+そのため`TypeScript`を利用している場合はタグ付きユニオンを利用したResult型を利用することでよりスマートな書き方ができます。
 
 ### Result型で表現する
 
