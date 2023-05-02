@@ -14,7 +14,7 @@ https://jsprimer.net/basic/error-try-catch/#throw
 
 https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/throw
 
-この`throw`文ですが、私はよくレビューなどで例外を投げないでください（`throw`文を使わないでほしい）というコメントをするのですが
+この`throw`文ですが、私はよくレビューなどで例外を投げないでください（`throw`文を使わないでほしい）というコメントをするのですがその理由とどのようにコードを変更すればよいのか、ということを書いておこうと思いました。
 
 ### 前提条件
 
@@ -30,7 +30,7 @@ Node.jsを利用したサーバーサイドのコードやCLIツールの開発�
 先に結論から書いておくとTypeScriptを利用している場合例外はカスタムエラーを返却するか、Result型を利用するのがよいと思っています。
 次の章からサンプルコードを用いながら`throw`文を使った実例と、代替え案について記述していきます。
 
-### throw文の問題点
+### なにを問題だと感じているのか
 
 `throw`文を利用した場合のデメリットとして個人的に感じている観点は下記の２つです。
 
@@ -171,13 +171,13 @@ const userInput: number[] = foo;
 const result: number | IncomputableError = add(userInput[0], userInput[1]);
 
 if (result instanceof IncomputableError) {
+  // 定義した独自エラーのインスタンスであることを確認する
   alert("計算できない値が含まれています")
 };
 ```
 
 この手法の場合ランタイムでも有効なチェックができる一方で、冗長な書き方になってしまいます。
-そのため`TypeScript`を利用している場合はタグ付きユニオンを利用したResult型を利用することでよりスマートな書き方ができます。
 
 ### Result型で表現する
 
-`Result`型とは、
+
