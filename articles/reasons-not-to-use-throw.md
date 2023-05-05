@@ -39,7 +39,7 @@ Node.jsを利用したサーバーサイドのコードやCLIツールの開発�
 
 下記の`x`と`y`を入力してその合計値を返す`add`関数を例として考えていきます。
 
-```ts:sample.ts
+```ts:add.ts
 export const add = (x: number, y: number): number => {
   return x + y;
 }
@@ -47,7 +47,7 @@ export const add = (x: number, y: number): number => {
 
 この関数に`x`か`y`どちらかが`NaN`の場合例外を投げるという使用を追加してみましょう。
 
-```diff ts:sample.ts
+```diff ts:add.ts
  export const add = (x: number, y: number): number => {
 +  if (Number.isNaN(x) || Number.isNaN(y)) {
 +    throw new Error('NaNは入力値として使用できない');
@@ -61,7 +61,7 @@ export const add = (x: number, y: number): number => {
 まずは「`try...catch`を使うべき関数なのかという情報が外部から分からない」という部分ですが  
 この関数を他ファイルから`import`して利用する場合型定義は下記のようになります。
 
-```ts:sample.d.ts
+```ts:add.d.ts
 export declare const add: (x: number, y: number) => number;
 ```
 
@@ -72,7 +72,7 @@ export declare const add: (x: number, y: number) => number;
 一番とっつきやすい変更としては従来`throw new Error()`としていた箇所を`return new Error()`に書き換える手法だと思います。
 これまでのサンプルコードに適用すると下記のようになります。
 
-```diff ts
+```diff ts:add.ts
 -export const add = (x: number, y: number): number => {
 +export const add = (x: number, y: number): number | Error => {
    if (Number.isNaN(x) || Number.isNaN(y)) {
@@ -86,13 +86,11 @@ export declare const add: (x: number, y: number) => number;
 変更を加えることにより関数の返り値の型が`number`から`number|Error`に変化しました。
 このように例外を投げるのではなく、エラーを返却することにより利用側では`Error`型が含まれるため失敗する可能性のある関数であることが分かります。
 
-しかしこの方法でも「想定していない`Error`を受け取ってしまう場合がある」という問題は解決しません。
-
 ### 想定していない`Error`を受け取ってしまう場合がある
 
 次に「想定していない`Error`を受け取ってしまう場合がある」という問題ですが、まずは最初の`throw`を使った実装から確認していきます。
 
-```ts:sample.ts
+```ts:add.ts
 export const add = (x: number, y: number): number => {
   if (Number.isNaN(x) || Number.isNaN(y)) {
     throw new Error('NaNは入力値として使用できない');
@@ -101,83 +99,174 @@ export const add = (x: number, y: number): number => {
 }
 ```
 
-実際に利用側から`add`関数を使用してみた例が下記です。
+関数の引数に`1`や`50`など直接数値を入れる場合は問題ありませんが、この関数の引数に別の関数の戻り値を入れる場合を考えてみます。
 
 ```ts
-import { add } from "./sample";
+// 常にエラーになるfoo関数
+const foo = () => {
+  throw new Error("Foo Error");
+}
+
 try {
-  add(1, 2);
+  add(foo(), 10);
 } catch {
-  alert("計算できない文字列が含まれています");
+  // 足し算に失敗したという前提でcatch節が実行されてしまう
+  alert("足し算ができませんでした");
 }
 ```
 
-このように入力が静的に決まっている場合はそもそも例外が発生しないことは明らかですが、実務のコードはより複雑になることが多いです。
-例として`add`関数の引数が配列の特定の位置を抜き出すというコードの場合[`RangeError`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/RangeError)が発生する場合があります。
+ここで定義されている関数`foo`は常にエラーを投げる関数ですが、単純な`try...catch`では`foo()`と`add()`どちらの処理が失敗したのかにかかわらず`catch`節が実行されてしまいます。
 
-https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/RangeError
+#### エラーの種類を判定して出し分けを行う場合
+
+エラーの種類を判別して、処理を分けることも可能ですが冗長であったり不安定なコードになってしまうので省略させていただきます。
+
+:::details `error.message`の比較を行う方法
+
+`error.message`を参照してエラー文を基準に処理を分けることは可能です。
+しかし、エラー文を変更しただけで壊れるのであまり現実的ではないと思います。
 
 ```ts
-import { add } from "./sample";
-// ユーザーの入力値を配列に格納しておく変数
-const userInput: number[] = foo;
+// 常にエラーになるfoo関数
+const foo = () => {
+  throw new Error("Foo Error");
+}
+
 try {
-  add(userInput[0], userInput[1]);
-  // userInput.length = 1 の場合などに RangeError が発生する可能性
-} catch {
-  alert("計算できない文字列が含まれています");
-  // 実際には入力値が不足しているにもかかわらずすべてのエラーをcatchしてしまう
+  add(foo(), 10);
+} catch (error) {
+  if (error.message === "Foo Error") {
+    // foo()を呼び出したことによるエラーの場合
+  } else if (error.message === 'NaNは入力値として使用できない') {
+    // 入力値にNaNが含まれていた場合
+  }
 }
 ```
 
-このように`try...catch`では全てのエラーを受け取ってしまうため、意図しないエラーも受け取って`catch`節が実行されてしまう可能性があります。
+:::
 
-例外を投げずに`Error`との`Union`型を返却する場合もこの点には注意が必要で、`JavaScript`の各種エラーは`Error`を継承しているため`RangeError instanceof Error`は`true`になってしまいます。
+:::details カスタムエラーを定義する
 
-```ts
-import { add } from "./sample";
+`Error`を継承した独自エラーを定義後それぞれの関数でそれぞれ独自エラーを投げるように、
+`instanceof`演算子を利用してどの独自エラーのインスタンスが`error`に格納されているのかで判断する方法も存在しますが、かなり冗長になるのでこちらも現実的ではないと思います。
 
-const userInput: number[] = foo;
-const result: number | Error = add(userInput[0], userInput[1]);
-
-if (result instanceof Error) {
-  // RangeError も instanceof Errorを満たしてしまう
-  alert("計算できない値が含まれています")
-};
-```
-
-これを回避するためには返却するエラーを独自エラーに変更する必要があります。
-
-```ts:sample.ts
-// 計算不能を表すエラー
-export class IncomputableError extends Error {
-  constructor() {
-    super();
+```ts:customError.ts
+// 関数foo専用のエラー
+class FooError extends Error {
+  constructor(message) {
+    super(message);
   }
 }
 
-export const add = (x: number, y: number): number | IncomputableError => {
-  if (Number.isNaN(x) || Number.isNaN(y)) {
-    return new IncomputableError('NaNは入力値として使用できない');
+// 計算不可エラー
+class IncomputableError extends Error {
+  constructor(message) {
+    super(message);
   }
-  return x + y;
 }
 ```
 
 ```ts
-import { add, IncomputableError } from "./sample";
+const foo = () => {
+  throw new FooError("Foo Error");
+}
 
-const userInput: number[] = foo;
-const result: number | IncomputableError = add(userInput[0], userInput[1]);
-
-if (result instanceof IncomputableError) {
-  // 定義した独自エラーのインスタンスであることを確認する
-  alert("計算できない値が含まれています")
-};
+try {
+  add(foo(), 10);
+} catch (error) {
+  // error がどの独自エラーのインスタンスであるかを基準に判定
+  if (error instanceof FooError) {
+    // foo()を呼び出したことによるエラーの場合
+  } else if (error instanceof IncomputableError) {
+    // 入力値にNaNが含まれていた場合
+  }
+}
 ```
 
-この手法の場合ランタイムでも有効なチェックができる一方で、冗長な書き方になってしまいます。
+:::
 
 ### Result型で表現する
 
+Result型は処理の成功・失敗を型として表現する方法です。
+RustやSwiftなどでは元から提供されている機能ですが、TypeScriptには存在しないためクラスや[タグ付きユニオン](https://typescriptbook.jp/reference/values-types-variables/discriminated-union)を利用してユーザー定義の型として表現されます。
 
+https://typescriptbook.jp/reference/values-types-variables/discriminated-union
+
+[TypeScript 4.6以降はタグ付きユニオンの使い勝手が格段に良くなっている](https://zenn.dev/uhyo/articles/ts-4-6-destructing-unions)ため個人的には下記のように型定義のみでも十分だと考えています。
+
+https://zenn.dev/uhyo/articles/ts-4-6-destructing-unions
+
+```ts:Result.ts
+// 成功時の型定義
+type SuccessResult<T> = {
+  type: 'success';
+  payload: T;
+}
+// 失敗時の型定義
+type ErrorResult = {
+  type: 'error';
+  error: Error;
+}
+
+export type Result<T = unknown> = SuccessResult<T> | ErrorResult;
+```
+
+そして今までのコードを上記の型定義を利用したコードとして書き直すとこのようになります。
+
+```ts:add.ts
+import type { Result } from './Result.ts';
+export const add = (x: number, y: number): Result<number> => {
+  if (Number.isNaN(x) || Number.isNaN(y)) {
+    return {
+      type: 'error',
+      error: new Error('NaNは入力値として使用できない');
+    }
+  }
+  return {
+    type: 'success',
+    payload: x + y;
+  }
+}
+```
+
+```ts
+const result = add(2, 10);
+
+if (result.type === 'error') {
+  // ErrorResult型として推論
+  console.error(result.error.message);
+} else {
+  // SuccessResult型として推論
+  console.log(result.payload);
+}
+```
+
+また、関数`foo`についても`throw`を使わなくなることで書き方が変わり安全にアクセスできるようになりました。
+関数`foo`に関しては常に`error`を返すので若干わかりづらくなってしまいましたが、最初に挙げていた
+
+- `try...catch`を使うべき関数なのかという情報が外部から分からない
+- 想定していない`Error`を受け取ってしまう場合がある
+
+という問題を解決することができます。
+
+```ts
+const foo = (): Result => {
+  return {
+    type: 'error',
+    error: new Error("Foo Error")
+  }
+}
+const fooResult = foo();
+if (fooResult.type === 'success') {
+  // type: 'success' を返すことが定義されていないので実行されない
+  const result = add(fooResult.payload, 10);
+
+  if (result.type === 'error') {
+    // ErrorResult型として推論
+    console.error(result.error.message);
+  } else {
+    // SuccessResult型として推論
+    console.log(result.payload);
+  }
+}
+```
