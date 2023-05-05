@@ -1,9 +1,9 @@
 ---
 title: "私がthrowを使わない理由"
-emoji: "😊"
+emoji: "🥏"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ['javascript','typescript']
-published: false
+topics: ['javascript','typescript', 'frontend']
+published: true
 ---
 
 ## この記事について
