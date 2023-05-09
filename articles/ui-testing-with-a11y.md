@@ -1,6 +1,6 @@
 ---
 title: "UIのテストにアクセシビリティ情報が使われている理由"
-emoji: "👋"
+emoji: "🐙"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["frontend", "test", "アクセシビリティ", "testinglibrary"]
 published: false
