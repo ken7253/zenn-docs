@@ -23,21 +23,19 @@ UIのテストにアクセシビリティ情報が活用されている理由と
 AOMについての詳細な解説は行いませんが、テストを書く上で重要なのは
 AOMはDOMとCSSOMの両方を参照して生成されるという性質です。
 
-例として、下記のように要素は存在するが見えないボタンが存在したとします。
+例として、下記のように要素としては存在するが見えないボタンを例に考えます。
 
-<!-- TODO:コードが正しいか後で検証 -->
 ```tsx:Button.tsx
 import type { FC } from "react";
 
 export const Button: FC = () => {
-  return <button style={{opacity: 0}}>テキスト</button>
+  return <button style={{display: none;}}>テキスト</button>
 }
 ```
 
-この場合、通常のDOMからのアクセスの場合は要素を取得できますが、視覚情報としてアクセスできないと判断されAOM上から要素は除外されています。
+この場合`querySelector()`など、DOMからのアクセスの場合は要素を取得できますが、ユーザーからはアクセスできないためアクセシビリティツリーから要素は除外されます。
 そのため下記のようなテストを行った場合、テストは失敗します。
 
-<!-- TODO:コードが正しいか後で検証 -->
 ```tsx:Button.test.tsx
 import { render, screen } from '@testing-library/react';
 import { Button } from "../Button";
@@ -58,7 +56,6 @@ test('ボタンが表示されること', () => {
 この項目は前の項目と被る部分も多いですが、アクセシビリティ情報を元にしたテストはリファクタリングにも強いという側面があります。
 例として、下記のようなモーダルダイアログコンポーネントを参考にリファクタリング例を紹介します。
 
-<!-- TODO:コードが正しいか後で検証 -->
 ```tsx:Dialog.tsx
 import type { FC, ReactNode } from "react";
 
@@ -80,7 +77,6 @@ export const Dialog: FC<Props> = (props: Props) => {
 
 HTMLにはネイティブの`<dialog>`要素が存在しますが、[15.4以前のSafari](https://caniuse.com/dialog)に対応する必要があり自前で実装を行ったコンポーネントが存在するとします。
 
-<!-- TODO:コードが正しいか後で検証 -->
 ```tsx:Dialog.test.tsx
 import { render, screen } from '@testing-library/react';
 import { Dialog } from "../Dialog";
