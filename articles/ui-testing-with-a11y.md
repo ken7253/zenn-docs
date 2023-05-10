@@ -27,10 +27,10 @@ AOMはDOMとCSSOMの両方を参照して生成されるという性質です。
 
 <!-- TODO:コードが正しいか後で検証 -->
 ```tsx:Button.tsx
-import type { FC } from 'react';
+import type { FC } from "react";
 
-export const Button:FC = () => {
-  return <button style="opacity: 0;">テキスト</button>;
+export const Button: FC = () => {
+  return <button style={{opacity: 0}}>テキスト</button>
 }
 ```
 
@@ -60,22 +60,22 @@ test('ボタンが表示されること', () => {
 
 <!-- TODO:コードが正しいか後で検証 -->
 ```tsx:Dialog.tsx
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 
 type Props = {
   children: ReactNode;
   open: boolean;
-}
+};
 
 export const Dialog: FC<Props> = (props: Props) => {
   return (
-    <div style={{display: props.open ? 'block' : 'none'}}>
+    <div style={{ display: props.open ? "block" : "none" }}>
       <div role="dialog" aria-modal="true">
-        { props.children }
+        {props.children}
       </div>
     </div>
-  )
-}
+  );
+};
 ```
 
 HTMLにはネイティブの`<dialog>`要素が存在しますが、[15.4以前のSafari](https://caniuse.com/dialog)に対応する必要があり自前で実装を行ったコンポーネントが存在するとします。
