@@ -68,9 +68,9 @@ https://fonts.google.com/noto/specimen/Noto+Sans+JP?subset=japanese
 
 下記内容で実際にフォントごとにボタンを作成してみました。
 
-| 環境 | バージョン |
-|---|---|
-| OS | `Windows 10 64bit 21H2` |
+| 環境    | バージョン                             |
+| ------- | -------------------------------------- |
+| OS      | `Windows 10 64bit 21H2`                |
 | browser | `Google Chrome 101.0.4951.64 (64 bit)` |
 
 ```css:css

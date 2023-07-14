@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx zenn preview",
+    "fmt": "prettier . -w",
     "new_Article": "npx zenn new:article",
     "new_Book": "npx zenn new:book",
     "package:update": "ncu -i",
@@ -15,6 +16,7 @@
   "author": "ken7253 <ken7253@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "prettier": "^3.0.0",
     "zenn-cli": "^0.1.143"
   },
   "devDependencies": {

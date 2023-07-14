@@ -2,7 +2,7 @@
 title: "私がthrowを使わない理由"
 emoji: "🥏"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ['javascript','typescript', 'frontend']
+topics: ["javascript", "typescript", "frontend"]
 published: true
 ---
 
@@ -109,7 +109,7 @@ export const add = (x: number, y: number): number => {
 // 常にエラーになるfoo関数
 const foo = () => {
   throw new Error("Foo Error");
-}
+};
 
 try {
   add(foo(), 10);
@@ -134,14 +134,14 @@ try {
 // 常にエラーになるfoo関数
 const foo = () => {
   throw new Error("Foo Error");
-}
+};
 
 try {
   add(foo(), 10);
 } catch (error) {
   if (error.message === "Foo Error") {
     // foo()を呼び出したことによるエラーの場合
-  } else if (error.message === 'NaNは入力値として使用できない') {
+  } else if (error.message === "NaNは入力値として使用できない") {
     // 入力値にNaNが含まれていた場合
   }
 }
@@ -173,7 +173,7 @@ class IncomputableError extends Error {
 ```ts
 const foo = () => {
   throw new FooError("Foo Error");
-}
+};
 
 try {
   add(foo(), 10);
@@ -241,7 +241,7 @@ export const add = (x: number, y: number): Result<number> => {
 ```ts
 const result = add(2, 10);
 
-if (result.type === 'error') {
+if (result.type === "error") {
   // ErrorResult型として推論
   console.error(result.error.message);
 } else {
@@ -255,16 +255,16 @@ if (result.type === 'error') {
 ```ts
 const foo = (): Result => {
   return {
-    type: 'error',
-    error: new Error("Foo Error")
-  }
-}
+    type: "error",
+    error: new Error("Foo Error"),
+  };
+};
 const fooResult = foo();
-if (fooResult.type === 'success') {
+if (fooResult.type === "success") {
   // type: 'success' を返すことが定義されていないので実行されない
   const result = add(fooResult.payload, 10);
 
-  if (result.type === 'error') {
+  if (result.type === "error") {
     // ErrorResult型として推論
     console.error(result.error.message);
   } else {

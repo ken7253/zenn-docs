@@ -2,7 +2,7 @@
 title: "初心者コーダーがNodeCGを学ぶ（概念編）"
 emoji: "🐱"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["JavaScript","Node.js","NodeCG"]
+topics: ["JavaScript", "Node.js", "NodeCG"]
 published: true
 ---
 
@@ -64,16 +64,17 @@ bundleとは何かというと、配信レイアウトの構築に必要なフ�
 
 ファイル構成としてまずは最低限このようなファイルが必要になります。
 またHTMLにスタイルなどを直接記述してCSSやJSをまとめても問題ありません。
->sample-bundle  
->├ dashboard  
->│ ├ sample-panel.html    //管理用のパネルのhtml本体  
->│ ├ style.css            //dashboard用のスタイルシート  
->│ └ main.js              //dashboard用のJavascript  
->├ graphics  
->│ ├ sample.html          //レイアウト画面（OBSで読み込むのもこのページになります）  
->│ ├ style.css            //graphics用のスタイルシート  
->│ └ main.js              //graphics用のJavascript  
->└ package.json            //設定ファイル  
+
+> sample-bundle  
+> ├ dashboard  
+> │ ├ sample-panel.html //管理用のパネルのhtml本体  
+> │ ├ style.css //dashboard用のスタイルシート  
+> │ └ main.js //dashboard用のJavascript  
+> ├ graphics  
+> │ ├ sample.html //レイアウト画面（OBSで読み込むのもこのページになります）  
+> │ ├ style.css //graphics用のスタイルシート  
+> │ └ main.js //graphics用のJavascript  
+> └ package.json //設定ファイル
 
 また、gitで管理する場合は`sample-bundle`内をgitで管理してあげれば配布なども容易になるかと思われます。
 
@@ -169,18 +170,18 @@ NPMスクリプトからすぐにNodeCGを起動できます。
 
 NodeCGの設定項目としては上記の部分が中心で上から
 
-| 項目 | 内容 |
-|:-:|:-:|
+|       項目        |                    内容                    |
+| :---------------: | :----------------------------------------: |
 | "compatibleRange" | このbundleが対応しているNodeCGのバージョン |
-| "dashboardPanels" | dashboard（管理画面）の設定 |
-| "name" | 管理画面のパネル名 |
-| "title" | 管理画面のパネルタイトル |
-| "width" | パネルの幅を指定できます[^1] |
-| "file" | パネルのhtmlファイルを指定 |
-| "graphics" | graphics（配信レイアウト側）の設定 |
-| "file" | 配信レイアウトのhtmlファイルを指定 |
-| "width" | レイアウトの横幅 |
-| "height" | レイアウトの縦幅 |
+| "dashboardPanels" |        dashboard（管理画面）の設定         |
+|      "name"       |             管理画面のパネル名             |
+|      "title"      |          管理画面のパネルタイトル          |
+|      "width"      |        パネルの幅を指定できます[^1]        |
+|      "file"       |         パネルのhtmlファイルを指定         |
+|    "graphics"     |     graphics（配信レイアウト側）の設定     |
+|      "file"       |     配信レイアウトのhtmlファイルを指定     |
+|      "width"      |              レイアウトの横幅              |
+|     "height"      |              レイアウトの縦幅              |
 
 このような項目があります。
 他にもオプション項目などもありますので必要に応じて記述する必要があります。

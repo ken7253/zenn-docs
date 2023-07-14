@@ -22,7 +22,7 @@ https://v3.nuxtjs.org/getting-started/migration#feature-comparison
 ## なぜNuxtなのか
 
 あくまでNuxtに常に優位があるわけではなく、既存のフレームワークとの別の需要を満たすものだと考えます。  
-この記事では主にVuePressとの比較を中心に記載していきます。  
+この記事では主にVuePressとの比較を中心に記載していきます。
 
 VuePressの場合インストールをして、簡単な設定だけでドキュメントを書きはじめることができます。
 
@@ -45,7 +45,7 @@ VuePressやVitePressは軽量でスピーディーなドキュメントページ
 
 ## Nuxt Contentを利用したMarkdown管理
 
-Nuxt Contentを導入することでMarkdownのパース及び各種データの取得が可能になります。  
+Nuxt Contentを導入することでMarkdownのパース及び各種データの取得が可能になります。
 
 https://content.nuxtjs.org/
 
@@ -135,11 +135,11 @@ https://github.com/ken7253/d6/blob/main/components/AllPost.vue
 
 https://content.nuxtjs.org/api/components/content-list#slots
 
-| プロパティ | 説明 |
-|---|---|
-| `title` | 記事のタイトル（front matterで設定されていない場合`h1`要素） |
+| プロパティ    | 説明                                                                        |
+| ------------- | --------------------------------------------------------------------------- |
+| `title`       | 記事のタイトル（front matterで設定されていない場合`h1`要素）                |
 | `description` | 記事のディスクリプション（front matterで設定されていない場合最初の`p`要素） |
-| `_path` | 記事のパス |
+| `_path`       | 記事のパス                                                                  |
 
 また、記事データの配列は通常の配列と同様に操作が可能ですが`Array.slice()`などで複製後に操作を行わないと正しく表示されません。  
 記事の表示順を反転したい場合などは`Array.slice().reverse()`などで変更を行いましょう。
@@ -151,7 +151,7 @@ https://content.nuxtjs.org/api/components/content-list#slots
 
 次に一番のオススメポイントでもあるProseコンポーネントの使い方を解説します。
 Nuxt Contentには様々な機能がありますが、中でもProseコンポーネントを使用したタグの展開方法の変更が非常に優秀です。  
-Nuxtの`components`ディレクトリに`content`というディレクトリを作成し、その中にProseコンポーネントを作成していくことでMarkdownから展開されるマークアップのスタイル定義やロジックの追加などが可能です。  
+Nuxtの`components`ディレクトリに`content`というディレクトリを作成し、その中にProseコンポーネントを作成していくことでMarkdownから展開されるマークアップのスタイル定義やロジックの追加などが可能です。
 
 下記のリンクにデフォルトのコンポーネントの定義があるため、この定義を上書きする形で同名のコンポーネントを作成することで定義を更新できます。
 

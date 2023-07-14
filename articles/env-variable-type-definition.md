@@ -37,7 +37,7 @@ interface DefinedEnvVariable {
   NODE_ENV?: string;
 }
 
-export const typedEnv:DefinedEnvVariable = env;
+export const typedEnv: DefinedEnvVariable = env;
 ```
 
 しかしながら標準モジュールをそのまま使えたほうがややこしくないと思いますので今回は`process`モジュールの型定義を拡張していきます。

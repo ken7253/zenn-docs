@@ -66,7 +66,7 @@ https://docs.npmjs.com/cli/v9/using-npm/scripts#pre--post-scripts
 ルートディレクトリを含めたパターンを設定して、表示されるスクリプトをルートディレクトリのものだけに限定することができます。
 
 ![](/images/articles/npm-exclude-workspace/npm-exclude.jpg)
-*`npm.exclude`適用後：下層のディレクトリが表示から除外されて任意のディレクトリが除外できる*
+_`npm.exclude`適用後：下層のディレクトリが表示から除外されて任意のディレクトリが除外できる_
 
 ## 参考資料
 

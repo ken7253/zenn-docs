@@ -47,7 +47,7 @@ element.innerText = "Hoge";
 ### DOMとは何か
 
 ![](/images/articles/what-is-javascript/dom.png)
-*HTMLはブラウザに解釈される段階でDOMに変換される*
+_HTMLはブラウザに解釈される段階でDOMに変換される_
 
 DOM = Document Object Model
 とはよく書かれていますが、ブラウザはHTMLを読み込んだ際に文字列としてのHTMLではなく、HTMLを解釈してからDOMに変換を行います。
@@ -85,13 +85,14 @@ HTMLでは属性値として`class`や`id`などを定義できますがそれ�
 上記の手順で開発者ツールで任意の要素がどのようなDOMとして解釈されているかが確認できる。
 
 ![実際に開発者ツールでDOMを展開した場合、attributesの項目にclassなどが表示されている](/images/articles/what-is-javascript/dom-on-devtool.jpg)
-*実際には画面に収まらないほど多くのプロパティが存在している*
+_実際には画面に収まらないほど多くのプロパティが存在している_
 
 :::
 
 ## JavascriptでDOMを操作する
 
 ではここで冒頭で書いていた
+
 > JSで操作するのは「**HTMLではなくDOMである**」
 
 という一節を振り返ってみましょう。

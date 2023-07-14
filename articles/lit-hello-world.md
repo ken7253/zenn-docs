@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["javascript", "Lit", "WebComponents"]
 published: true
 ---
+
 # Lit入門 コンポーネント作成編
 
 ## はじめに
@@ -59,14 +60,14 @@ export default class MyElement extends LitElement {
 `@customElement()`の引数に要素名を渡し、クラス名には要素名をアッパーキャメルケースにしたものを設定します。
 
 ```ts
-@customElement('my-element')
+@customElement("my-element")
 export default class MyElement extends LitElement {
   //...
 }
 ```
 
 :::message
-[MDN](https://developer.mozilla.org/ja/docs/Web/Web_Components/Using_custom_elements#:~:text=%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E8%A6%81%E7%B4%A0%E3%81%AE%E5%90%8D%E5%89%8D%E3%81%AF%E3%80%81%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5%E3%81%8C%E4%BD%BF%E3%82%8F%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E5%90%8D%E5%89%8D%20(kebab%2Dcase)%20%E3%81%A7%E3%81%82%E3%82%8B%E5%BF%85%E8%A6%81%E3%81%8C%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82%E5%8D%98%E4%B8%80%E3%81%AE%E5%8D%98%E8%AA%9E%E3%81%AB%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82)や[HTML Standard](https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name)にも記載があるようにカスタム要素の命名は
+[MDN](<https://developer.mozilla.org/ja/docs/Web/Web_Components/Using_custom_elements#:~:text=%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E8%A6%81%E7%B4%A0%E3%81%AE%E5%90%8D%E5%89%8D%E3%81%AF%E3%80%81%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5%E3%81%8C%E4%BD%BF%E3%82%8F%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E5%90%8D%E5%89%8D%20(kebab%2Dcase)%20%E3%81%A7%E3%81%82%E3%82%8B%E5%BF%85%E8%A6%81%E3%81%8C%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82%E5%8D%98%E4%B8%80%E3%81%AE%E5%8D%98%E8%AA%9E%E3%81%AB%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82>)や[HTML Standard](https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name)にも記載があるようにカスタム要素の命名は
 2つ以上の単語を `-`（ハイフン）で繋ぐという命名規則が存在し、一部使用できない文字列が存在します。
 :::
 
@@ -92,10 +93,10 @@ static styles = css`
 3. [`css`関数](https://lit.dev/docs/api/styles/#css)を[`unsafeCSS`関数](https://lit.dev/docs/api/styles/#unsafeCSS)に変更し引数に 2. でインポートした文字列を渡す。
 
 ```ts
-import { LitElement, unsafeCSS, html } from 'lit';
-import style from './style.css';
+import { LitElement, unsafeCSS, html } from "lit";
+import style from "./style.css";
 
-@customElement('my-element')
+@customElement("my-element")
 export default class MyElement extends LitElement {
   static styles = unsafeCSS(style);
   // ...
@@ -127,16 +128,16 @@ export default class MyElement extends LitElement {
 として定義されたプロパティは
 
 ```html
-<my-element name="hi">
+<my-element name="hi"></my-element>
 ```
 
 のように属性として指定可能になります。
 また、通常の要素と同じようにDOMとしても取得・変更が行えます。
 
 ```ts
-const myElement = document.querySelector('my-element');
+const myElement = document.querySelector("my-element");
 console.log(myElement.name); // world
-myElement.name = 'hi';
+myElement.name = "hi";
 console.log(myElement.name); // hi
 ```
 
@@ -181,7 +182,7 @@ name = "";
 実例としては`checked`属性のようにユーザーのアクションに応じて属性値が変更が変わる仕様を模倣したい場合に使用する場合が多いと感じます。
 
 ![](/images/articles/lit-hello-world/lit-property-option.png)
-*`attribute` 及び `reflect`の挙動についての図*
+_`attribute` 及び `reflect`の挙動についての図_
 
 ##### type
 

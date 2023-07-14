@@ -2,7 +2,7 @@
 title: "slidevで複数スライドを管理したいのでスクリプトを書く"
 emoji: "🗂"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["javascript", "typescript" ,"nodejs"]
+topics: ["javascript", "typescript", "nodejs"]
 published: true
 ---
 
@@ -27,7 +27,7 @@ https://zenn.dev/hiroko_ino/articles/hackable-slidev-play-lt
 ## slidevで複数のスライドを管理したい
 
 勉強会の資料などを管理するためにslidevを利用できるリポジトリを作っておこうと思いリポジトリを作成しましたが  
-複数スライドなどを管理する仕組みなどが無さそうだったのでNode.jsの勉強がてら自分でスクリプトを書いてみました。  
+複数スライドなどを管理する仕組みなどが無さそうだったのでNode.jsの勉強がてら自分でスクリプトを書いてみました。
 
 ### 仕組みについて解説
 
@@ -182,7 +182,7 @@ slidevに引数として選択したスライドのパスが渡るようにし�
 ### npm-scriptsから実行できるように設定
 
 最後にnpm-scriptから実行ができるように追加します。  
-今回はコードをTypeScriptで書いていたのでコンパイル後のJSファイルを指定するか、[`ts-node`](https://www.npmjs.com/package/ts-node)等で直接TypeScriptを実行できるようにします。  
+今回はコードをTypeScriptで書いていたのでコンパイル後のJSファイルを指定するか、[`ts-node`](https://www.npmjs.com/package/ts-node)等で直接TypeScriptを実行できるようにします。
 
 ```json:package.json
 {

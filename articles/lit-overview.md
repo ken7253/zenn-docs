@@ -5,6 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["javascript", "Lit", "WebComponents"]
 published: true
 ---
+
 # フロントエンド開発におけるLitという選択肢
 
 フロントエンドを構築するためのフレームワークは[React](https://ja.reactjs.org/)/[Vue](https://jp.vuejs.org/index.html)などが多く採用されており、次点で[Svelte](https://svelte.jp/)/[Angular](https://angular.jp/)/[Solid](https://www.solidjs.com/)などが有名でしょうか。  
@@ -21,20 +22,20 @@ WebComponentsを利用することで、モダンブラウザに最適化した�
 ## 特徴
 
 Litの最大の特徴はWebComponentsをベースとしたフレームワークであること  
-宣言的なUIパーツの管理のみにフォーカスしていることでしょう。  
+宣言的なUIパーツの管理のみにフォーカスしていることでしょう。
 
 ### WebComponentsをベースにしていることの利点
 
 Litの最大の強みはWebComponentsを基本としていることでしょう。  
 公式のドキュメントページにも記載されているように、WebComponentsの標準的な仕様をベースとしているためフレームワーク自体はシンプルでバンドルサイズも小さく[^1]抑えられます。
 
-[^1]:[React デベロッパー向け Lit - Google](https://codelabs.developers.google.com/codelabs/lit-2-for-react-devs?hl=ja#1)
+[^1]: [React デベロッパー向け Lit - Google](https://codelabs.developers.google.com/codelabs/lit-2-for-react-devs?hl=ja#1)
 
 コンポーネントはバンドル後にはHTMLタグとして使用することが可能ですので、様々な環境下での使用が可能です。  
 ReactやVueなどのフレームワークと併用して使用されることも想定しており、異なるフレームワークを横断してパーツを共有することが可能です。
 
 また、WebComponentsではShadow DOMを利用したカプセル化が可能です。  
-Shadow DOMでのカプセル化はドキュメント自体を独立させるため、他のフレームワークなどで採用されている仮想DOM（Virtual DOM）とは異なった特徴があります。  
+Shadow DOMでのカプセル化はドキュメント自体を独立させるため、他のフレームワークなどで採用されている仮想DOM（Virtual DOM）とは異なった特徴があります。
 
 :::message
 仮想DOMとShadowDOMは考え方としては似ていますが  
@@ -104,6 +105,7 @@ Litはデザインシステムの構築や様々な制約のある環境での�
 日本語のドキュメントがまだまだ少ないですが、自分も少しずつ解説記事などを上げていきたいと思いますのでWebComponentsに興味のある方などはぜひ触れてみていただきたいです。
 
 ## 関連資料
+
 https://developer.mozilla.org/ja/docs/Web/Web_Components
 https://developer.mozilla.org/ja/docs/Web/Web_Components/Using_shadow_DOM
 https://zenn.dev/takanorip/articles/640f9fe9c6c8ca
