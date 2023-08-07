@@ -36,8 +36,39 @@ console.log(typeof comment.addEventListener);
 
 [^1]: Google Chrome 115 及び Firefox 116 にて確認
 
-## なぜコメントにイベントリスナーが存在するのか
+## DOMの構造についての解説
+
+### なぜコメントにイベントリスナーが存在するのか
 
 実際にメソッドが存在することは確認できたので、次になぜこのような仕組みになっているのかを解説していきます。
 
 https://developer.mozilla.org/ja/docs/Web/API/Comment
+
+<!--コメントインターフェイスについての解説やEventTargetの説明もする。実際にDOMをコンソールで触ってみて、EventTargetまでプロトタイプを遡ってみる。-->
+
+#### 実際にインターフェイスの継承構造をたどってみる
+
+先程と同じように`new Comment()`でコメントを作成してみてその中身を確認してみましょう。
+
+```ts
+const comment = new Comment('foo');
+console.log([comment]);
+```
+
+::: message
+ブラウザのコンソールで直接DOMを出力しようとすると、HTML文字列として返却されてしまうため、配列としてコンソールに出力させています。
+:::
+
+次にコンソール上でコメントオブジェクトを配列から展開して、`[[Prototype]]`という項目を何度も開いていくと下記のような順番で開いていくと思います。
+
+1. `Comment`
+2. `CharacterData`
+3. `Node`
+4. `EventTarget`
+5. `Object`
+
+#### EventTargetインターフェイスとはなにか
+
+### HTMLの要素についても確認してみる
+
+コメントについての確認は終わったので次にHTML要素についても確認してみましょう。
