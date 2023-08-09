@@ -67,7 +67,12 @@ console.log([comment]);
 4. `EventTarget`
 5. `Object`
 
+この作業はDOMの継承関係を遡っていく作業だと思ってください。
+この内`Object`はDOMの世界から飛び出してJavaScript全体の環境まで飛び出しているのでDOMの世界としては`EventTarget`が最上位のインターフェースとなります。
+
 #### EventTargetインターフェイスとはなにか
+
+イベントを受け取ることができる要素やオブジェクトは`EventTarget`インターフェースを継承しています。
 
 ### HTMLの要素についても確認してみる
 
