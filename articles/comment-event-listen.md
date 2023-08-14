@@ -23,7 +23,9 @@ DOMの構造に詳しい方であれば、このような仕様になってい�
 ## 確認手順
 
 まずは、本当にコメントにイベントリスナーが実装されているかを確認します。
-下記のコードをブラウザのコンソールで実行してみます。
+確認のため`new Comment()`でHTMLのコメントを作成し、`typeof`演算子で`addEventListener`が関数として存在するのかを確認[^1]しています。  
+
+[^1]: Google Chrome 115 及び Firefox 116 にて確認
 
 ```ts
 const comment = new Comment('foo');
@@ -32,19 +34,19 @@ console.log(typeof comment.addEventListener);
 // => "function"
 ```
 
-内容としては`new Comment()`でHTMLのコメントを作成し、`typeof`演算子で`addEventListener`が関数として存在するのかを確認[^1]しています。
-
-[^1]: Google Chrome 115 及び Firefox 116 にて確認
+確認の結果`typeof`演算子によって`"function"`が返却され`addEventListener`という関数が登録されていることが確認できました。
 
 ## DOMの構造についての解説
 
-### なぜコメントにイベントリスナーが存在するのか
-
 実際にメソッドが存在することは確認できたので、次になぜこのような仕組みになっているのかを解説していきます。
 
-https://developer.mozilla.org/ja/docs/Web/API/Comment
+### なぜコメントにイベントリスナーが存在するのか
 
-<!--コメントインターフェイスについての解説やEventTargetの説明もする。実際にDOMをコンソールで触ってみて、EventTargetまでプロトタイプを遡ってみる。-->
+答えを先に出すと、コメントにも`addEventListener`/`removeEventListener`が存在する理由としては、`Comment`インターフェイスが`EventTarget`インターフェイスを継承しているからです。
+
+https://developer.mozilla.org/ja/docs/Web/API/EventTarget
+
+上記の理由がどういう意味なのかを実際にブラウザのコンソールなどを使って確認してみます。
 
 #### 実際にインターフェイスの継承構造をたどってみる
 
@@ -71,14 +73,27 @@ console.log([comment]);
 この作業はDOMの継承関係を遡っていく作業だと思ってください。
 この内`Object`はJavaScript全体の環境まで飛び出しているのでDOMの世界としては`EventTarget`が最上位のインターフェースとなります。
 
-<!--インターフェースの継承でどのようなプロパティが追加されるかの図を入れる？-->
+`HTMLButtonElement`（button要素）の場合を例とすると下記の図のような継承が行われています。
+
+![EventTargetインターフェイスはaddEventListenerなどが存在する、NodeインターフェイスはappendChild・textContentなどが存在する、ElementインターフェイスはqueryセレクターメソッドやinnerHTMLが存在する、HTMLElementインターフェイスはclickメソッドやinnerTextなどが存在する、HTMLButtonElementインターフェイスはdisabledやtypeなどが存在する。](/images/articles/comment-event-listen/dom-interface.jpg)
+*HTMLButtonElementのDOMインターフェイス継承関係を表した図*
+
+解説のためにbutton要素を出してしまいましたが、コメントと比較した場合どちらも`Node`インターフェイスまでは共通しています。
+そのためbutton要素もコメントも`Node`インターフェイスが持っているメソッドやプロパティを利用することができます。
 
 #### EventTargetインターフェイスとはなにか
 
 名前からも想像できるように`EventTarget`はイベント関連のメソッドやプロパティを定義したインターフェースです。
 そのため、イベントを受け取ることができる要素やオブジェクトは`EventTarget`インターフェースを継承しています。
-ブラウザで利用できるAPIにはDOM以外にもイベントを受け取ることができるオブジェクトが存在するためこのインターフェースが最上位に位置しています。
+ブラウザで利用できるAPIにはHTMLの要素以外にも`Window`などイベントを受け取ることができるオブジェクトが存在するためこのインターフェースが最上位に位置しています。
 
-### HTMLの要素についても確認してみる
+## まとめ
 
-コメントについての確認は終わったので次にHTML要素についても確認してみましょう。
+このようにDOMの構造を理解することで、要素が持つプロパティやメソッドが要素固有のものなのかそれともすべての要素が持っているものなのかなどが理解しやすくなります。
+またTypeScriptを利用している場合は`instanceof`演算子を利用した型ガードなどがより正確に記述できるようになります。
+普段何気なく利用しているHTMLやDOMですが、少し深掘りしてみるとまた見え方が変わってくるので興味があれば参考資料に記載したMDNの[DOM の紹介](https://developer.mozilla.org/ja/docs/Web/API/Document_Object_Model/Introduction)ページなどを読んでみてください。
+
+## 参考資料
+
+https://developer.mozilla.org/ja/docs/Web/API/Document_Object_Model/Introduction
+https://developer.mozilla.org/ja/docs/Web/API/EventTarget
