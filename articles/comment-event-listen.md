@@ -3,7 +3,7 @@ title: "なぜHTMLコメントにはイベントリスナーが付与できる�
 emoji: "💭"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["html", "dom"]
-published: false
+published: true
 ---
 
 HTMLのコメントには`addEventListener`や`removeEventListener`などのイベント関連の処理が実装されています。
