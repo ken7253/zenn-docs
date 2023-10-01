@@ -3,7 +3,7 @@ title: "Chrome120から実現するdetails要素のアコーディオンパタ�
 emoji: "🚪"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["html"]
-published: false
+published: true
 ---
 
 ::: message
