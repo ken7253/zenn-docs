@@ -6,6 +6,9 @@ topics: ["フロントエンド"]
 published: false
 ---
 
+昨今、Progressive Enhancementという言葉を耳にする機会が多くなったと感じています。
+個人的に興味のある考え方であったので、少し調べて考えをまとめてみようと思います。
+
 ## Progressive Enhancementについて
 
 MDNでは下記のように説明されています。
@@ -20,6 +23,10 @@ Progressive Enhancementが基礎を作ってから積み上げていくような
 この２つは多くのユーザーに最低限必要な機能を届けるという点で非常に似ていますがアプローチと考え方が異なります。
 
 https://developer.mozilla.org/ja/docs/Glossary/Graceful_degradation
+
+### JSが無効な環境は重要なファクターではあるが全てではない
+
+Progressive Enhancementを語る場合、フロントエンドにおいてはよくJSが無効化されている環境向けにHTMLやCSSの活用が挙げられることも多いと思います。
 
 ## 古いブラウザ向けに届けるということ
 
