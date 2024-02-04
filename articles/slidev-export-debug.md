@@ -3,7 +3,7 @@ title: "slidevでエクスポート時にレイアウトが崩れる場合のデ
 emoji: "🔎"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["slidev"]
-published: false
+published: true
 ---
 
 ::: message
