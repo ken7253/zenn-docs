@@ -1,6 +1,6 @@
 ---
 title: "slidevでエクスポート時にレイアウトが崩れる場合のデバック方法"
-emoji: "🐛"
+emoji: "🔎"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["slidev"]
 published: false
@@ -10,15 +10,15 @@ published: false
 この記事に記載されているデバック方法は非公式な情報であり、今後のアップデートで確認ができなくなる可能性があります。
 :::
 
-普段LTなどのスライドはslidevを利用して作成していますが、レイアウト用のCSSファイルを編集した場合に何度かエクスポートしたファイルのレイアウトが崩れてしまう現象に何度か遭遇しました。
+勉強会用のスライドはslidevを利用して作成していますが、レイアウト用のCSSファイルを編集した場合に何度かPDFとしてエクスポートしたファイルのレイアウトが崩れてしまう現象に何度か遭遇しました。
 
 https://ja.sli.dev/
 
-調べてみた限りではデバック方法を記載した記事などがなかったので同じような症状に悩まされている方向けに記事に残しておきます。
+調べてみた限り、デバック方法を記載した記事などがなかったので同じような症状に悩んでいる方向けに記事に残しておきます。
 
-## エクスポートされるデータをブラウザから確認する方法
+## エクスポートされる表示をブラウザから確認する方法
 
-先に結論を記載しておくと、ローカルホストを起動後（`npx slidev`）に下記のアドレスにアクセスすると実際にエクスポートされるスライドが確認できます。
+先に結論を記載しておくと、ローカルホストを起動後（`npx slidev`実行後）に下記のアドレスにアクセスするとプレゼンテーション画面とは別にエクスポートされるスライドがブラウザ上で確認できます。
 
 ```txt
 http://localhost:3030/print?print
@@ -35,7 +35,7 @@ http://localhost:3030/print?print
 
 ### エクスポート時は１ページにすべてのスライドを描画している
 
-まずはこちらですが、slidevはpdfへの出力時にはページを分割しておらず、1ページをまとめてpdfとして出力したあとにページの分割を行っています。
+まずはこちらですが、slidevはPDFへの出力時にはページを分割しておらず、1ページをまとめてPDFとして出力したあとにページの分割を行っています。
 これにより、スライド全体に背景のグラデーションを適用したCSSなどを追加するとグラデーションの位置がズレることなどがありました。
 
 ### ローカルサーバーとエクスポート時でIDやClass名などが変わる場合がある
@@ -48,4 +48,4 @@ http://localhost:3030/print?print
 
 - [デバック時に残したスクラップ](https://zenn.dev/ken7253/scraps/38129ef7d9928a)
 - [slidevのエクスポート処理のコード](https://github.com/slidevjs/slidev/blob/main/packages/slidev/node/export.ts#L147-L430)
-- [Playwrightでpdfファイルを生成する方法](https://dev.to/checkly/generating-pdfs-invoices-manuals-and-more-from-web-pages-using-puppeteer-playwright-3l07)
+- [PlaywrightでPDFファイルを生成する方法](https://dev.to/checkly/generating-PDFs-invoices-manuals-and-more-from-web-pages-using-puppeteer-playwright-3l07)
