@@ -17,7 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "prettier": "^3.2.4",
-    "zenn-cli": "^0.1.151"
+    "zenn-cli": "^0.1.152"
   },
   "devDependencies": {
     "markdownlint": "^0.33.0",
