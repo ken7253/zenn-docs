@@ -3,7 +3,7 @@ title: "TSKaigiは配信画面もTypeScript製だったという話"
 emoji: "📺️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["typescript", "nodecg"]
-published: false
+published: true
 ---
 
 ## はじめに
