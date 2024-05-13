@@ -1,6 +1,6 @@
 ---
 title: "TSKaigiは配信画面もTypeScript製だったという話"
-emoji: "🐕"
+emoji: "📺️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["typescript", "nodecg"]
 published: false
@@ -12,6 +12,8 @@ published: false
 当日の各トラックの配信運営や総合的な環境構築などは他のメンバーを中心に行っていただきましたが、自分は配信画面のデザインや配信に乗せる情報管理用のシステムをコツコツ作っていたのでその紹介をさせていただきます。
 
 情報管理用のシステムといってもローカルマシン上で動く簡単なもので、[NodeCG](https://www.nodecg.dev/ja/)と呼ばれるNode.js向けの配信画面管理用のフレームワークを利用しました。
+
+https://www.nodecg.dev/ja/
 
 ## NodeCGとは
 
@@ -26,7 +28,9 @@ NodeCGは先ほど紹介したようにNode.jsとブラウザ技術で動的な�
 
 NodeCG自体はこれらの環境を提供してくれるフレームワークであり、UIの構築方法はブラウザで動くものであれば特に制約はなく利用できます。
 
-今回は自分が普段慣れていることと、[RTA in Japanの構成](https://github.com/RTAinJapan/rtainjapan-layouts)を参考にしたためReactとTypeScriptを利用しましたがVueやAngularなどのライブラリを使ったり、素のHTML+CSS+JSでも構築することもできます。
+今回は自分が普段慣れていることと、[RTA in Japanの構成](https://github.com/RTAinJapan/rtainjapan-layouts)を参考にしたため、ReactとTypeScriptを利用しましたがVueやAngularなどのライブラリを使ったり、素のHTML+CSS+JSでも構築することもできます。
+
+https://github.com/RTAinJapan/rtainjapan-layouts
 
 ## 作成した画面
 
@@ -70,7 +74,7 @@ https://github.com/tskaigi/tskaigi.github.io/tree/main/constants
 
 ## まとめ
 
-このようにTSKaigiのレイアウトはReact+TypeScriptでNodeCG上に構築されていました。
+簡単な内容ではありますが、TSKaigiの配信レイアウトがReact+TypeScriptで組まれていたことを紹介させていただきました。
 
 NodeCGが持つコードでレイアウトを管理したり動的な部分を簡単に作れるというメリットは、直前まで情報を修正したり頻繁にレイアウト案が変わったりするようなカンファレンスの立ち上げという不確実なことが多いフェーズにおいて役立ちました。
 
