@@ -22,7 +22,7 @@ Node.jsを利用して開発しているとステージング環境とローカ�
 `process`モジュールの型定義ファイルは[`process.d.ts`](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/node/process.d.ts)で定義されています。
 その中で定義されている`ProcessEnv`というinterfaceが`process.env`の型定義となっています。
 
-https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/node/process.d.ts#L111-L118
+https://github.com/DefinitelyTyped/DefinitelyTyped/blob/1de17c95d817ce5b21e0e9af24ba80d008a60a23/types/node/process.d.ts#L156-L161
 
 `process.env`と打つと`TZ?`が入力補完に出てくるため見たことがある人も多いのではないでしょうか。
 
