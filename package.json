@@ -2,7 +2,7 @@
   "name": "zenn-docs",
   "version": "1.0.0",
   "description": "zenn articles and books",
-  "main": "index.js",
+  "types": "modules",
   "scripts": {
     "dev": "npx zenn preview",
     "fmt": "prettier . -w",
@@ -22,6 +22,7 @@
   "devDependencies": {
     "@eslint/js": "^9.9.0",
     "eslint": "^9.9.0",
+    "eslint-plugin-markdown": "^5.1.0",
     "globals": "^15.9.0",
     "markdownlint": "^0.34.0",
     "npm-check-updates": "^16.14.20",
