@@ -3,7 +3,7 @@ title: "Markdown内部のJavaScriptにもLinterを効かせたい"
 emoji: "🧐"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["eslint", "javascript", "typescript", 'markdown']
-published: false
+published: true
 ---
 
 ## はじめに
