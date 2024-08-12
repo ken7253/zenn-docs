@@ -77,6 +77,8 @@ export default class MyElement extends LitElement {
 カスタム要素はへのスタイルの適用は[`css`関数](https://lit.dev/docs/api/styles/#css)を利用して`styles`フィールドに追加します。
 この`styles`フィールドへの追加は関数の返り値である`CSSResult`もしくはその配列で行えます。
 
+<!-- eslint-skip -->
+
 ```ts
 static styles = css`
   /* この中にCSSを記述することでスタイルを定義できる */
@@ -153,6 +155,8 @@ https://lit.dev/docs/api/ReactiveElement/#PropertyDeclaration
 `attribute`オプションはおそらく一番使用頻度が高いと思われます。
 `boolean | string`が指定可能で初期値は`true`です。
 
+<!-- eslint-skip -->
+
 ```ts
 @property({attribute: 'some-property'})
 someProperty: string = "";
@@ -170,6 +174,8 @@ someProperty: string = "";
 
 `reflect`オプションは内部的にプロパティの値が変わった場合の属性値の扱いを変更します。
 `boolean`が指定可能で、初期値は`false`です。
+
+<!-- eslint-skip -->
 
 ```ts
 @property({reflect: true})
@@ -193,6 +199,8 @@ _`attribute` 及び `reflect`の挙動についての図_
 `Number`を指定した場合は[`Number()`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Number)関数によって変換されます。
 `Boolean`を指定した場合は[`checked`属性](https://developer.mozilla.org/ja/docs/Web/HTML/Element/input#attr-checked)のように指定した属性値が存在すれば`true`を存在しなければ`false`に変換されます。
 `Array`と`Object`を指定した場合はどちらも同じく`JSON.parse()`を使用して変換が行われます。
+
+<!-- eslint-skip -->
 
 ```ts
 @property({type: Array})

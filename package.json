@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "npx zenn preview",
     "fmt": "prettier . -w",
+    "check": "run-p check:*",
     "new_Article": "npx zenn new:article",
     "new_Book": "npx zenn new:book",
+    "check:eslint": "eslint .",
     "package:update": "ncu -i",
     "postpackage:update": "npm i",
     "package:maintenance": "npm dedupe && npm prune"
@@ -23,6 +25,7 @@
     "@eslint/js": "^9.9.0",
     "eslint": "^9.9.0",
     "eslint-plugin-markdown": "^5.1.0",
+    "eslint-plugin-react": "^7.35.0",
     "globals": "^15.9.0",
     "markdownlint": "^0.34.0",
     "npm-check-updates": "^16.14.20",

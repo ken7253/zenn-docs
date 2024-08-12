@@ -16,5 +16,16 @@ export default tseslint.config(
     files: ["**/*.md/*.js", "**/*.(m|c)?js"],
     ...pluginJs.configs.recommended,
   },
-  ...tseslint.configs.recommended,
+  ...tseslint.configs.recommended.map((config) => ({
+    ...config,
+    files: ["**/*.md/*.ts"],
+  })),
+  {
+    name: "markdown/rules",
+    rules: {
+      "no-console": "off",
+      "import/no-unresolved": "off",
+      "@typescript-eslint/no-unused-vars": "off",
+    },
+  },
 );

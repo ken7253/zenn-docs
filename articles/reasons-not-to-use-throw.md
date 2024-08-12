@@ -228,12 +228,12 @@ export const add = (x: number, y: number): Result<number> => {
   if (Number.isNaN(x) || Number.isNaN(y)) {
     return {
       type: 'error',
-      error: new Error('NaNは入力値として使用できない');
+      error: new Error('NaNは入力値として使用できない'),
     }
   }
   return {
     type: 'success',
-    payload: x + y;
+    payload: x + y,
   }
 }
 ```
