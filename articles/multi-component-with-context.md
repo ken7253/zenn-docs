@@ -50,8 +50,8 @@ export const App = () => {
       <MyListItem>item 1</MyListItem>
       <MyListItem>item 2</MyListItem>
       <MyListItem>item 3</MyListItem>
-    <MyListGroup>
-  )
+    </MyListGroup>
+  );
 };
 ```
 
@@ -61,16 +61,13 @@ export const App = () => {
 import { type PropsWithChildren, type FC } from "react";
 
 export const MyListItem: FC<PropsWithChildren> = ({ children }) => {
-  return (
-    <li>{children}</li>
-  )
+  return <li>{children}</li>;
 };
 
 export const MyListGroup: FC<PropsWithChildren> = ({ children }) => {
-  return (
-    <ul>{ children }</ul>
-  )
+  return <ul>{children}</ul>;
 };
+
 ```
 
 組み合わせて利用するという前提があるため普通のコンポーネントのようにコンポーネントAの中でコンポーネントBを使うということができず、`MyListItem`と`MyListGroup`はお互いにコンポーネントとして依存していないためPropsでの値の受け渡しは行なえません。
@@ -93,16 +90,17 @@ export const NestCountContext = createContext(0);
 import { type FC, PropsWithChildren, useContext } from "react";
 import { NestCountContext } from "./context";
 
-export const NestingSection:FC<PropsWithChildren> = ({ children }) => {
+export const NestingSection: FC<PropsWithChildren> = ({ children }) => {
   const nestCount = useContext(NestCountContext);
   console.log(nestCount); // ネストされた回数が表示される。
 
   return (
-    <NestCountContext.Provider value={ nestCount + 1 }>
-      { children }
+    <NestCountContext.Provider value={nestCount + 1}>
+      {children}
     </NestCountContext.Provider>
-  )
-}
+  );
+};
+
 ```
 
 このようにコンポーネントを作成することで、そのコンポーネントが何回ネストされたのかを`useContext`の返り値（今回は`nestCount`という変数）によって取得することができます。
@@ -114,7 +112,7 @@ export const NestingSection:FC<PropsWithChildren> = ({ children }) => {
 import { NestingSection } from "./NestingSection";
 
 export const App = () => {
-  return {
+  return (
     <NestingSection>          {/* => 0 */}
       <NestingSection>        {/* => 1 */}
         <NestingSection>      {/* => 2 */}
@@ -125,7 +123,7 @@ export const App = () => {
         <NestingSection />    {/* => 2 */}
       </NestingSection> 
     </NestingSection>
-  }
+  )
 }
 ```
 
@@ -141,23 +139,22 @@ export const NestCountContext = createContext(0);
 
 ```tsx:MyList.tsx
 import { type PropsWithChildren, type FC, useContext } from "react";
-import { NestCountContext } from "./context"
+import { NestCountContext } from "./context";
 
 export const MyListItem: FC<PropsWithChildren> = ({ children }) => {
-  return (
-    <li>{children}</li>
-  )
+  return <li>{children}</li>;
 };
 
 export const MyListGroup: FC<PropsWithChildren> = ({ children }) => {
   const nestCount = useContext(NestCountContext);
 
   return (
-    <NestCountContext.Provider value={ nestCount + 1 }>
-      <ul>{ children }</ul>
-    <NestCountContext>
-  )
+    <NestCountContext.Provider value={nestCount + 1}>
+      <ul>{children}</ul>
+    </NestCountContext.Provider>
+  );
 };
+
 ```
 
 :::
@@ -166,7 +163,43 @@ export const MyListGroup: FC<PropsWithChildren> = ({ children }) => {
 
 また、`ref`と組み合わせて下の階層のコンポーネントに参照を渡す方法もスクロールの制御などを行う場合などで有効です。
 
+```ts:context.ts
+import { createContext, RefObject } from "react";
+
+export const ParentRefContext = createContext<RefObject<HTMLElement>>(null);
+```
+
 ```tsx
+import { useRef, useContext, type PropsWithChildren, type FC } from "react";
+import { ParentRefContext } from "./context.ts";
+
+const ScrollContainer: FC<PropsWithChildren> = ({ children }) => {
+  const ref = useRef();
+
+  return (
+    <ParentRefContext.Provider value={ref}>
+      <div
+        ref={ref}
+        style={{ position: "relative", height: 300, overflow: "scroll" }}
+      >
+        {children}
+      </div>
+    </ParentRefContext.Provider>
+  );
+};
+
+const BackToTop: FC<PropsWithChildren> = ({ children }) => {
+  // 直前にネストされた親コンポーネントの参照が受け取れる。
+  const parentRef = useContext(ParentRefContext);
+
+  const handleClick = () => {
+    if (parentRef?.current != null) {
+      parentRef.current.scrollTo({ top: 0, left: 0 });
+    }
+  };
+
+  return <button onClick={handleClick} type="button" />;
+};
 
 ```
 
