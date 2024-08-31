@@ -11,11 +11,16 @@ HTMLの要素の中でもテーブルやリストなどは複数の要素を組�
 
 これらの要素をラップするようにコンポーネントを作る場合や、複雑な機能の実現などで複数のコンポーネントを設計する場合にReactのContextを利用することでシンプルかつ高機能なコンポーネントの設計ができる場合があります。
 
-::: message
-React 19より`Context.Provider`は`Context`そのものをProviderとして利用できるようになりましたがこの記事では従来の`Context.Provider`の書き方に統一しています。
+## 注意点
 
-参考資料: [React 19の新機能まるわかり - &lt;Context.Provider&gt;の非推奨化](https://zenn.dev/uhyo/books/react-19-new/viewer/context)
-:::
+ContextについてはReact 19より下記の変更がありました。
+
+- `Context.Provider`は`Context`そのものをProviderとして利用できるようになった
+- `useContext(Context)`が`use(Context)`で利用できるようになった
+
+しかしこの記事ではReact 18時点での書き方でコードを記載させていただきます。
+
+https://zenn.dev/uhyo/books/react-19-new/viewer/context
 
 ## Contextとはなにか
 
@@ -60,11 +65,11 @@ export const App = () => {
 ```tsx:MyList.tsx
 import { type PropsWithChildren, type FC } from "react";
 
-export const MyListItem: FC<PropsWithChildren> = ({ children }) => {
+export const MyListItem: FC<PropsWithChildren<{}>> = ({ children }) => {
   return <li>{children}</li>;
 };
 
-export const MyListGroup: FC<PropsWithChildren> = ({ children }) => {
+export const MyListGroup: FC<PropsWithChildren<{}>> = ({ children }) => {
   return <ul>{children}</ul>;
 };
 
@@ -90,7 +95,7 @@ export const NestCountContext = createContext(0);
 import { type FC, PropsWithChildren, useContext } from "react";
 import { NestCountContext } from "./context";
 
-export const NestingSection: FC<PropsWithChildren> = ({ children }) => {
+export const NestingSection: FC<PropsWithChildren<{}>> = ({ children }) => {
   const nestCount = useContext(NestCountContext);
   console.log(nestCount); // ネストされた回数が表示される。
 
@@ -141,11 +146,11 @@ export const NestCountContext = createContext(0);
 import { type PropsWithChildren, type FC, useContext } from "react";
 import { NestCountContext } from "./context";
 
-export const MyListItem: FC<PropsWithChildren> = ({ children }) => {
+export const MyListItem: FC<PropsWithChildren<{}>> = ({ children }) => {
   return <li>{children}</li>;
 };
 
-export const MyListGroup: FC<PropsWithChildren> = ({ children }) => {
+export const MyListGroup: FC<PropsWithChildren<{}>> = ({ children }) => {
   const nestCount = useContext(NestCountContext);
 
   return (
@@ -163,24 +168,26 @@ export const MyListGroup: FC<PropsWithChildren> = ({ children }) => {
 
 また、`ref`と組み合わせて下の階層のコンポーネントに参照を渡す方法もスクロールの制御などを行う場合などで有効です。
 
+少しコードが長くなってしまいますが、スクロールエリアを作成するコンポーネントとスクロールエリアを元に戻すコンポーネントを作成してみます。
+
 ```ts:context.ts
 import { createContext, RefObject } from "react";
 
 export const ParentRefContext = createContext<RefObject<HTMLElement>>(null);
 ```
 
-```tsx
+```tsx:Scroll.tsx
 import { useRef, useContext, type PropsWithChildren, type FC } from "react";
-import { ParentRefContext } from "./context.ts";
+import { ParentRefContext } from "./context";
 
-const ScrollContainer: FC<PropsWithChildren> = ({ children }) => {
-  const ref = useRef();
+const ScrollContainer: FC<PropsWithChildren<{}>> = ({ children }) => {
+  const ref = useRef<HTMLElement>(null);
 
   return (
     <ParentRefContext.Provider value={ref}>
       <div
         ref={ref}
-        style={{ position: "relative", height: 300, overflow: "scroll" }}
+        style={{ height: 300, overflow: "scroll" }}
       >
         {children}
       </div>
@@ -188,7 +195,7 @@ const ScrollContainer: FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
-const BackToTop: FC<PropsWithChildren> = ({ children }) => {
+const BackToTop: FC<PropsWithChildren<{}>> = ({ children }) => {
   // 直前にネストされた親コンポーネントの参照が受け取れる。
   const parentRef = useContext(ParentRefContext);
 
@@ -198,10 +205,15 @@ const BackToTop: FC<PropsWithChildren> = ({ children }) => {
     }
   };
 
-  return <button onClick={handleClick} type="button" />;
+  return (
+    <button onClick={handleClick} type="button">
+      最初に戻る
+    </button>
+  )
 };
-
 ```
+
+このように親となるコンポーネント側でProviderに自身の参照を渡すことによって、そのコンポーネントの配下に所属するコンポーネントが親のDOMへの参照を受け取ることができます。
 
 ## まとめ
 
