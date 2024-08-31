@@ -11,10 +11,16 @@ HTMLの要素の中でもテーブルやリストなどは複数の要素を組�
 
 これらの要素をラップするようにコンポーネントを作る場合や、複雑な機能の実現などで複数のコンポーネントを設計する場合にReactのContextを利用することでシンプルかつ高機能なコンポーネントの設計ができる場合があります。
 
+::: message
+React 19より`Context.Provider`は`Context`そのものをProviderとして利用できるようになりましたがこの記事では従来の`Context.Provider`の書き方に統一しています。
+
+参考資料: [React 19の新機能まるわかり - &lt;Context.Provider&gt;の非推奨化](https://zenn.dev/uhyo/books/react-19-new/viewer/context)
+:::
+
 ## Contextとはなにか
 
 まず、本題に入る前にContextの捉え方について簡単に振り返ります。
-利用方法やAPIについては公式ドキュメントの項目が非常にわかりやすく解説してくれているのでこちらをご覧ください。
+利用方法やAPIについては公式ドキュメントが非常にわかりやすく解説してくれているのでこちらをご覧ください。
 
 https://ja.react.dev/learn/passing-data-deeply-with-context
 
@@ -24,18 +30,19 @@ Reactでのデータの受け渡しはPropsによって直接コンポーネン�
 
 また、離れたコンポーネント同士で値を受け渡すというと[jotai](https://jotai.org/)や[Redux](https://redux.js.org/)のようなstoreを想像される方もいらっしゃるかと思いますがContextはその名の通りコンポーネントの階層構造という文脈に依存したデータの受け渡しを行います。
 
-https://jotai.org/
-
 ## 組み合わせて利用するコンポーネント
 
-本題ですが組み合わせて利用するコンポーネントではPropsによる値の受け渡しは行なえません。
+では本題に入り、実際にコンポーネントの設計や求められる仕様を例に説明を進めていきます。
 
+### なぜContextを利用するのか
+
+組み合わせて利用するコンポーネントではPropsによる値の受け渡しは行なえません。
 例として、リストを表現するコンポーネントを考えてみます。
 
 利用する側としては、HTMLのリストと同じように使えたほうがわかりやすいので下記のように利用する想定で組んでいきます。
 
 ```tsx:App.tsx
-import { MyListItem, MyListGroup} from "./MyList";
+import { MyListItem, MyListGroup } from "./MyList";
 
 export const App = () => {
   return (
@@ -47,6 +54,8 @@ export const App = () => {
   )
 };
 ```
+
+`MyListGroup`を`ul`のように`MyListItem`を`li`のように扱いたい。
 
 ```tsx:MyList.tsx
 import { type PropsWithChildren, type FC } from "react";
@@ -64,7 +73,7 @@ export const MyListGroup: FC<PropsWithChildren> = ({ children }) => {
 };
 ```
 
-この場合、`MyListItem`と`MyListGroup`はお互いにコンポーネントとして依存して（内部で読み込まれて）いないためPropsでの値の受け渡しは行なえません。
+組み合わせて利用するという前提があるため普通のコンポーネントのようにコンポーネントAの中でコンポーネントBを使うということができず、`MyListItem`と`MyListGroup`はお互いにコンポーネントとして依存していないためPropsでの値の受け渡しは行なえません。
 
 ではこの`MyListGroup`をHTMLの`<ul>`と同じようにネスト可能にして、そのネストされた回数をコンポーネント内部で参照したい場合どのように設計するとよいでしょうか。
 
@@ -81,7 +90,7 @@ export const NestCountContext = createContext(0);
 まずは初期値を`0`としてContextを作成して、コンポーネントで利用します。
 
 ```tsx:NestingSection.tsx
-import { type FC, PropsWithChildren ,useContext } from "react";
+import { type FC, PropsWithChildren, useContext } from "react";
 import { NestCountContext } from "./context";
 
 export const NestingSection:FC<PropsWithChildren> = ({ children }) => {
@@ -120,6 +129,51 @@ export const App = () => {
 }
 ```
 
-## 親コンポーネントの参照を別のコンポーネントに渡す
+:::details リストコンポーネントへの適用例
 
+基本的には先程の例と同じく、Contextを作成してコンポーネントで読み込みます。
 
+```ts:context.ts
+import { createContext } from "react";
+
+export const NestCountContext = createContext(0);
+```
+
+```tsx:MyList.tsx
+import { type PropsWithChildren, type FC, useContext } from "react";
+import { NestCountContext } from "./context"
+
+export const MyListItem: FC<PropsWithChildren> = ({ children }) => {
+  return (
+    <li>{children}</li>
+  )
+};
+
+export const MyListGroup: FC<PropsWithChildren> = ({ children }) => {
+  const nestCount = useContext(NestCountContext);
+
+  return (
+    <NestCountContext.Provider value={ nestCount + 1 }>
+      <ul>{ children }</ul>
+    <NestCountContext>
+  )
+};
+```
+
+:::
+
+### 親コンポーネントの参照を別のコンポーネントに渡す
+
+また、`ref`と組み合わせて下の階層のコンポーネントに参照を渡す方法もスクロールの制御などを行う場合などで有効です。
+
+```tsx
+
+```
+
+## まとめ
+
+Contextを適切に利用することで実現したい動作を簡潔なコードで実現できることを感じていただけたかと思います。
+
+一方でContextを利用したコンポーネントは利用側からは暗黙的な挙動をするとも捉えられます。
+
+そのためContextを利用して受け渡した値を使って複雑なロジックを実装することは避け、あくまでコンポーネントの利用者側が予測しやすい挙動の範囲内でContextを利用するべきだとも考えています。
