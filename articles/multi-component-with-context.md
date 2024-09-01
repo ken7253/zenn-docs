@@ -3,8 +3,10 @@ title: "組み合わせて使う前提のコンポーネントを設計する場
 emoji: "📝"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["react"]
-published: false
+published: true
 ---
+
+## はじめに
 
 複数のコンポーネントを組み合わせる前提で設計を行うという需要は多くはないですが、必要な場面があります。
 HTMLの要素の中でもテーブルやリストなどは複数の要素を組み合わせて利用する前提で設計されています。
@@ -16,7 +18,7 @@ HTMLの要素の中でもテーブルやリストなどは複数の要素を組�
 ContextについてはReact 19より下記の変更がありました。
 
 - `Context.Provider`は`Context`そのものをProviderとして利用できるようになった
-- `useContext(Context)`が`use(Context)`で利用できるようになった
+- `useContext(Context)`が`use(Context)`という書き方ができるようになった
 
 しかしこの記事ではReact 18時点での書き方でコードを記載させていただきます。
 
@@ -25,7 +27,7 @@ https://zenn.dev/uhyo/books/react-19-new/viewer/context
 ## Contextとはなにか
 
 まず、本題に入る前にContextの捉え方について簡単に振り返ります。
-利用方法やAPIについては公式ドキュメントが非常にわかりやすく解説してくれているのでこちらをご覧ください。
+利用方法については公式ドキュメントが非常にわかりやすく解説してくれているのでこちらをご覧ください。
 
 https://ja.react.dev/learn/passing-data-deeply-with-context
 
