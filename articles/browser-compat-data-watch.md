@@ -3,7 +3,7 @@ title: "ブラウザのアップデートを追うのに便利なBCD-watchにつ
 emoji: "🔃"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["browser"]
-published: false
+published: true
 ---
 
 私はブラウザのアップデートや仕様化のプロセスを追うのが好きなのですが、普段から仕様を追っている人以外にはなかなか概要を把握するのが難しい部分があります。
