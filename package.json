@@ -27,7 +27,7 @@
     "eslint-plugin-markdown": "^5.1.0",
     "eslint-plugin-react": "^7.37.2",
     "globals": "^15.11.0",
-    "markdownlint": "^0.35.0",
+    "markdownlint": "^0.36.1",
     "npm-check-updates": "^17.1.9",
     "npm-run-all2": "^7.0.1",
     "textlint": "^14.2.1",
