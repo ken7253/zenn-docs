@@ -8,7 +8,7 @@ published: false
 
 ## 新しく実装が進むNode.prototype.moveBeforeメソッド
 
-`Node.prototype.moveBefore()`とは新しくNodeインターフェースに追加されるメソッドで[`Node.prototype.insertBefore()`](https://developer.mozilla.org/ja/docs/Web/API/Node/insertBefore)と同じような操作で**要素の状態を維持しつつ**ノードの移動ができるAPIです。
+`Node.prototype.moveBefore()` とは新しくNodeインターフェースに追加されるメソッドで [`Node.prototype.insertBefore()`](https://developer.mozilla.org/ja/docs/Web/API/Node/insertBefore) と同様のシグネチャーで**要素の状態を維持しつつ**ノードの移動ができるAPIです。
 
 https://developer.mozilla.org/ja/docs/Web/API/Node/insertBefore
 
@@ -16,8 +16,11 @@ https://developer.mozilla.org/ja/docs/Web/API/Node/insertBefore
 
 https://x.com/domfarolino/status/1790407887740666335
 
-注目していただきたい点としては、要素が左右に移動している際にアニメーションの状態が保持されている点です。
-右側のブロックにいるときに動いた量が左側のブロックに移動した際にも反映されていることが確認できるかと思います。
+注目していただきたい点としては、要素が左右に移動した際にアニメーションの状態が保持されている点で、右側のブロックにいるときに動いた量が左側のブロックに移動した際にも反映されていることが確認できるかと思います。
+
+このように `moveBefore()` では操作対象の内部状態を維持したまま要素を移動できるため、アニメーションの状態や `iframe` で読み込んだ外部リソースの状態などを維持したままノードの移動が行えます。
+
+またこの操作は特定のノードを取り除いたあとに別のノードに挿入するという挙動をとるため、既存の `Node.prototype.removeChild()` と `Node.prototype.insertBefore()` をまとめて行うことのできるメソッドとも捉えられます。
 
 ### 確認方法
 
