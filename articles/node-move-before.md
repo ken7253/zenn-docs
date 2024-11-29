@@ -12,11 +12,15 @@ published: false
 
 https://developer.mozilla.org/ja/docs/Web/API/Node/insertBefore
 
+**要素の状態を維持しつつ**ノードの移動ができるという表現が具体的に想像できない人もいるかもしれませんが具体的な例としてはXのこのポストの動画を見ていただけるとわかりやすいかと思います。
+
+https://x.com/domfarolino/status/1790407887740666335
+
+注目していただきたい点としては、要素が左右に移動している際にアニメーションの状態が保持されており右側のブロックにいるときに動いた量が左側のブロックに移動した際にも維持されている点です。
+
 ### 確認方法
 
 記事公開時点ではこのメソッドはchromeのCanary版で Atomic DOM move (Node.moveBefore) というフラグを有効化することで確認ができます。
-
-###
 
 ### chrome以外のブラウザの反応
 
@@ -32,6 +36,13 @@ https://github.com/WebKit/standards-positions/blob/main/README.md
 https://github.com/mozilla/standards-positions/blob/main/README.md
 
 :::
+
+### 課題について
+
+```ts
+const target = document.querySelector('#target');
+const content = document.querySelector('#content');
+```
 
 ## 参考資料
 
