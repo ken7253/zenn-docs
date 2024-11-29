@@ -36,11 +36,12 @@ https://state-preserving-atomic-move.glitch.me/
 
 ### chrome以外のブラウザの反応
 
-standard positionを確認するとmozilaチームはpositive[^1]を、webkitチームはsupport[^2]をそれぞれ合意が取れており、残すは実装を待つのみという状況です。
+standard position を確認するとmozilaチームはpositive[^1]を、webkitチームはsupport[^2]をそれぞれ合意が取れており、残すは実装を待つのみという状況です。
 
 [^1]: https://github.com/mozilla/standards-positions/issues/1053
 [^2]: https://github.com/WebKit/standards-positions/issues/375
 
+<!-- TODO: standard position に付いての説明を軽くする -->
 :::details standard positionについて補足
 
 https://github.com/WebKit/standards-positions/blob/main/README.md
@@ -49,12 +50,12 @@ https://github.com/mozilla/standards-positions/blob/main/README.md
 
 :::
 
-### 課題について
+## まとめ
 
-```ts
-const target = document.querySelector('#target');
-const content = document.querySelector('#content');
-```
+[TPACでも言及](https://github.com/whatwg/meta/issues/326#:~:text=Mason%3A%20this%20is,asked%20about%20retrofitting)があったように、このAPIはフレームワーク側での利用が期待されています。
+
+そのため開発者が直接利用する機会は少ないかと思われますが、これからのフレームワークの進化に貢献する重要な機能だと感じたので簡単に内容を記事にまとめてみました。
+現時点では[React](https://gist.github.com/gaearon/ad9347f1f809b6fe5af15bb911bbaf6b#moving-and-reparenting-without-losing-state)/[Angular](https://github.com/whatwg/dom/issues/1255#issuecomment-2044930653)/[htmx](https://htmx.org/examples/move-before/)などがこのAPIに関心を寄せています。
 
 ## 参考資料
 
