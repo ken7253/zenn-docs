@@ -29,7 +29,8 @@ https://x.com/domfarolino/status/1790407887740666335
 
 ### 確認方法
 
-記事公開時点ではこのメソッドは chrome の Canary 版(v133以降)で Atomic DOM move (Node.moveBefore) というフラグを有効化することで確認ができます。
+記事の公開時点ではこのメソッドは chrome の Canary 版(v133以降)で
+Atomic DOM move (Node.moveBefore) というフラグを有効化することで確認ができます。
 
 先程のポストのデモは[実際のサイト](https://state-preserving-atomic-move.glitch.me/)で確認できますので気になる方は、ぜひ環境を用意して実際に動作を確かめてみてください。
 
@@ -41,13 +42,29 @@ https://state-preserving-atomic-move.glitch.me/
 
 ### chrome以外のブラウザの反応
 
-standard position を確認すると mozila チームは positive[^1] を、webkit チームは support[^2] をそれぞれ合意が取れており、残すは実装を待つのみという状況です。
+standard position を確認すると mozilla チームは positive[^1] を、webkit チームは support[^2] をそれぞれ合意が取れており、残すは実装を待つのみという状況です。
 
 [^1]: https://github.com/mozilla/standards-positions/issues/1053
 [^2]: https://github.com/WebKit/standards-positions/issues/375
 
 <!-- TODO: standard position に付いての説明を軽くする -->
 :::details standard position について補足
+
+standard position とは提案された新しい仕様に対しての mozilla や webkit のチームがどのように考えているかを表明する場です。
+
+基本的に該当のリポジトリ内で issue として議論がスタートし、最終的にポジションが決まるという流れになっています。
+
+- [mozilla/standards-positions](https://github.com/mozilla/standards-positions)
+- [WebKit/standards-positions](https://github.com/WebKit/standards-positions)
+
+ポジションは下記のような分類になっており、これを見ることで実装まで進みそうかなどのある程度の予測がつく時があります。
+
+|         | 肯定的     | 中立[^3]  | 否定的     |
+| ------- | ---------- | --------- | ---------- |
+| webkit  | `support`  | `neutral` | `oppose`   |
+| mozilla | `positive` | `neutral` | `negative` |
+
+[^3]: 中立というよりかは価値を感じていないに近い
 
 :::
 
