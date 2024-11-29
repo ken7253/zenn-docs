@@ -12,7 +12,7 @@ published: false
 
 https://developer.mozilla.org/ja/docs/Web/API/Node/insertBefore
 
-**要素の状態を維持しつつ**ノードの移動ができるという表現が具体的に想像できない人もいるかもしれませんが具体的な例としてはXのこのポストの動画を見ていただけるとわかりやすいかと思います。
+「**要素の状態を維持しつつ**ノードの移動ができる」という表現が想像できない人もいるかもしれませんが具体的な例としては、Xのこのポストに付随している動画を見ていただけるとわかりやすいかと思います。
 
 https://x.com/domfarolino/status/1790407887740666335
 
@@ -20,7 +20,15 @@ https://x.com/domfarolino/status/1790407887740666335
 
 ### 確認方法
 
-記事公開時点ではこのメソッドはchromeのCanary版で Atomic DOM move (Node.moveBefore) というフラグを有効化することで確認ができます。
+記事公開時点ではこのメソッドはchromeのCanary版(v133以降)で Atomic DOM move (Node.moveBefore) というフラグを有効化することで確認ができます。
+
+先程のポストのデモは[実際のサイト](https://state-preserving-atomic-move.glitch.me/)で確認できますので気になる方は、ぜひ環境を用意して実際に動作を確かめてみてください。
+
+::: message
+自分が確認した時点(2024/11/30)ではテキスト選択やPopoverなどまだ動いていない機能がいくつか存在していました。
+:::
+
+https://state-preserving-atomic-move.glitch.me/
 
 ### chrome以外のブラウザの反応
 
