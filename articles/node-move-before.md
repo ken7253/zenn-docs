@@ -16,7 +16,8 @@ https://developer.mozilla.org/ja/docs/Web/API/Node/insertBefore
 
 https://x.com/domfarolino/status/1790407887740666335
 
-注目していただきたい点としては、要素が左右に移動している際にアニメーションの状態が保持されており右側のブロックにいるときに動いた量が左側のブロックに移動した際にも維持されている点です。
+注目していただきたい点としては、要素が左右に移動している際にアニメーションの状態が保持されている点です。
+右側のブロックにいるときに動いた量が左側のブロックに移動した際にも反映されていることが確認できるかと思います。
 
 ### 確認方法
 
@@ -32,7 +33,7 @@ https://state-preserving-atomic-move.glitch.me/
 
 ### chrome以外のブラウザの反応
 
-Standard positionを確認するとmozilaチームはpositive[^1]を、webkitチームはsupport[^2]をそれぞれ合意が取れており、残すは実装を待つのみという状況です。
+standard positionを確認するとmozilaチームはpositive[^1]を、webkitチームはsupport[^2]をそれぞれ合意が取れており、残すは実装を待つのみという状況です。
 
 [^1]: https://github.com/mozilla/standards-positions/issues/1053
 [^2]: https://github.com/WebKit/standards-positions/issues/375
@@ -54,12 +55,7 @@ const content = document.querySelector('#content');
 
 ## 参考資料
 
-https://groups.google.com/a/chromium.org/g/blink-dev/c/YE_xLH6MkRs/m/_7CD0NYMAAAJ
-
-https://chromestatus.com/feature/5135990159835136?gate=5177450351558656
-
-https://github.com/w3ctag/design-reviews/issues/976
-
-https://github.com/whatwg/meta/issues/326#issuecomment-2377500295
-
-https://github.com/whatwg/dom/pull/1307
+- [Intent to Ship: DOM `moveBefore()` method, for state-preserving atomic move](https://groups.google.com/a/chromium.org/g/blink-dev/c/YE_xLH6MkRs/m/_7CD0NYMAAAJ)
+- [DOM State-Preserving Move - Chrome Platform Status](https://chromestatus.com/feature/5135990159835136?gate=5177450351558656)
+- [TPAC 2024 meeting · Issue #326 · whatwg/meta](https://github.com/whatwg/meta/issues/326#issuecomment-2377500295)
+- [Introduce moveBefore() state-preserving atomic move API](https://github.com/whatwg/dom/pull/1307)
