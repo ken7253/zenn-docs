@@ -22,8 +22,8 @@ https://x.com/domfarolino/status/1790407887740666335
 
 またこの操作は特定のノードを取り除いたあとに別のノードに挿入するという挙動をとるため、既存の `Node.prototype.removeChild()` と `Node.prototype.insertBefore()` をまとめて行うことのできるメソッドとも捉えられます。
 
-![](/images/articles/node-move-before/node-move-before.png)
-*removeとinsertの挙動の組み合わせであることが分かる `moveBefore` の簡単な挙動イメージ*
+![moveBeforeの簡単な挙動イメージ](/images/articles/node-move-before/node-move-before.png)
+*remove と insert の挙動の組み合わせであることが分かる*
 
 <!-- https://excalidraw.com/#json=zVFQK303hKGcncZjm6opq,TjlxC7FPeZOK7CYYvMqQZA -->
 
