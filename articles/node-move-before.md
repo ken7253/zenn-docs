@@ -2,7 +2,7 @@
 title: "moveBeforeについて"
 emoji: "🦁"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["html", 'dom']
+topics: ["html", 'dom', 'javascript']
 published: false
 ---
 
@@ -21,6 +21,11 @@ https://x.com/domfarolino/status/1790407887740666335
 このように `moveBefore()` では操作対象の内部状態を維持したまま要素を移動できるため、アニメーションの状態や `iframe` で読み込んだ外部リソースの状態などを維持したままノードの移動が行えます。
 
 またこの操作は特定のノードを取り除いたあとに別のノードに挿入するという挙動をとるため、既存の `Node.prototype.removeChild()` と `Node.prototype.insertBefore()` をまとめて行うことのできるメソッドとも捉えられます。
+
+![](/images/articles/node-move-before/node-move-before.png)
+*removeとinsertの挙動の組み合わせであることが分かる`moveBefore`の簡単な挙動イメージ*
+
+<!-- https://excalidraw.com/#json=zVFQK303hKGcncZjm6opq,TjlxC7FPeZOK7CYYvMqQZA -->
 
 ### 確認方法
 
