@@ -6,13 +6,13 @@ topics: ["html", 'dom', 'javascript']
 published: false
 ---
 
-## 新しく実装が進むNode.prototype.moveBeforeメソッド
+## 新しく実装が進む `Node.prototype.moveBefore` メソッド
 
-`Node.prototype.moveBefore()` とは新しくNodeインターフェースに追加されるメソッドで [`Node.prototype.insertBefore()`](https://developer.mozilla.org/ja/docs/Web/API/Node/insertBefore) と同様のシグネチャーで**要素の状態を維持しつつ**ノードの移動ができるAPIです。
+`Node.prototype.moveBefore()` とは新しく Node インターフェースに追加されるメソッドで [`Node.prototype.insertBefore()`](https://developer.mozilla.org/ja/docs/Web/API/Node/insertBefore) と同様のシグネチャーで**要素の状態を維持しつつ**ノードの移動ができる API です。
 
 https://developer.mozilla.org/ja/docs/Web/API/Node/insertBefore
 
-「**要素の状態を維持しつつ**ノードの移動ができる」という表現が想像できない人もいるかもしれませんが具体的な例としては、Xのこのポストに付随している動画を見ていただけるとわかりやすいかと思います。
+「**要素の状態を維持しつつ**ノードの移動ができる」という表現が想像できない人もいるかもしれませんが具体的な例としては、X のこのポストに付随している動画を見ていただけるとわかりやすいかと思います。
 
 https://x.com/domfarolino/status/1790407887740666335
 
@@ -23,44 +23,39 @@ https://x.com/domfarolino/status/1790407887740666335
 またこの操作は特定のノードを取り除いたあとに別のノードに挿入するという挙動をとるため、既存の `Node.prototype.removeChild()` と `Node.prototype.insertBefore()` をまとめて行うことのできるメソッドとも捉えられます。
 
 ![](/images/articles/node-move-before/node-move-before.png)
-*removeとinsertの挙動の組み合わせであることが分かる`moveBefore`の簡単な挙動イメージ*
+*removeとinsertの挙動の組み合わせであることが分かる `moveBefore` の簡単な挙動イメージ*
 
 <!-- https://excalidraw.com/#json=zVFQK303hKGcncZjm6opq,TjlxC7FPeZOK7CYYvMqQZA -->
 
 ### 確認方法
 
-記事公開時点ではこのメソッドはchromeのCanary版(v133以降)で Atomic DOM move (Node.moveBefore) というフラグを有効化することで確認ができます。
+記事公開時点ではこのメソッドは chrome の Canary 版(v133以降)で Atomic DOM move (Node.moveBefore) というフラグを有効化することで確認ができます。
 
 先程のポストのデモは[実際のサイト](https://state-preserving-atomic-move.glitch.me/)で確認できますので気になる方は、ぜひ環境を用意して実際に動作を確かめてみてください。
 
 ::: message
-自分が確認した時点(2024/11/30)ではテキスト選択やPopoverなどまだ動いていない機能がいくつか存在していました。
+自分が確認した時点(2024/11/30)ではテキスト選択や Popover などまだ動いていない機能がいくつか存在していました。
 :::
 
 https://state-preserving-atomic-move.glitch.me/
 
 ### chrome以外のブラウザの反応
 
-standard position を確認するとmozilaチームはpositive[^1]を、webkitチームはsupport[^2]をそれぞれ合意が取れており、残すは実装を待つのみという状況です。
+standard position を確認すると mozila チームは positive[^1] を、webkit チームは support[^2] をそれぞれ合意が取れており、残すは実装を待つのみという状況です。
 
 [^1]: https://github.com/mozilla/standards-positions/issues/1053
 [^2]: https://github.com/WebKit/standards-positions/issues/375
 
 <!-- TODO: standard position に付いての説明を軽くする -->
-:::details standard positionについて補足
-
-https://github.com/WebKit/standards-positions/blob/main/README.md
-
-https://github.com/mozilla/standards-positions/blob/main/README.md
+:::details standard position について補足
 
 :::
 
 ## まとめ
 
-[TPACでも言及](https://github.com/whatwg/meta/issues/326#:~:text=Mason%3A%20this%20is,asked%20about%20retrofitting)があったように、このAPIはフレームワーク側での利用が期待されています。
+[TPAC でも言及](https://github.com/whatwg/meta/issues/326#:~:text=Mason%3A%20this%20is,asked%20about%20retrofitting)があったように、この API はフレームワーク側での利用が期待されており、現時点では [React](https://gist.github.com/gaearon/ad9347f1f809b6fe5af15bb911bbaf6b#moving-and-reparenting-without-losing-state)/[Angular](https://github.com/whatwg/dom/issues/1255#issuecomment-2044930653)/[htmx](https://htmx.org/examples/move-before/) などがこの API に関心を寄せています。
 
 そのため開発者が直接利用する機会は少ないかと思われますが、これからのフレームワークの進化に貢献する重要な機能だと感じたので簡単に内容を記事にまとめてみました。
-現時点では[React](https://gist.github.com/gaearon/ad9347f1f809b6fe5af15bb911bbaf6b#moving-and-reparenting-without-losing-state)/[Angular](https://github.com/whatwg/dom/issues/1255#issuecomment-2044930653)/[htmx](https://htmx.org/examples/move-before/)などがこのAPIに関心を寄せています。
 
 ## 参考資料
 
