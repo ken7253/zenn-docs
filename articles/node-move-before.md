@@ -6,6 +6,7 @@ topics: ["html", 'dom', 'javascript']
 published: false
 ---
 
+皆さんは新しく実装が進む `Node.prototype.moveBefore` というメソッドをご存知でしょうかこの記事ではこの新しいメソッドについて紹介させていただきます。
 ## 新しく実装が進む `Node.prototype.moveBefore` メソッド
 
 `Node.prototype.moveBefore()` とは新しく Node インターフェースに追加されるメソッドで [`Node.prototype.insertBefore()`](https://developer.mozilla.org/ja/docs/Web/API/Node/insertBefore) と同様のシグネチャーで**要素の状態を維持しつつ**ノードの移動ができる API です。
