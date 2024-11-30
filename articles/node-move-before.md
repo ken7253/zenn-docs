@@ -1,12 +1,13 @@
 ---
-title: "フロントエンドフレームワークから実装が求められているmoveBeforeメソッドとはなにか"
+title: "フロントエンドフレームワークから実装が望まれているmoveBeforeメソッドとはなにか"
 emoji: "🏃"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["html", 'dom', 'javascript']
 published: false
 ---
 
-皆さんは新しく実装が進む `Node.prototype.moveBefore` というメソッドをご存知でしょうかこの記事ではこの新しいメソッドについて紹介させていただきます。
+皆さんは新しく実装が進む `Node.prototype.moveBefore` というメソッドをご存知でしょうか、この記事ではこの新しいメソッドについて簡単な解説を行おうと思います。
+
 ## 新しく実装が進む `Node.prototype.moveBefore` メソッド
 
 `Node.prototype.moveBefore()` とは新しく Node インターフェースに追加されるメソッドで [`Node.prototype.insertBefore()`](https://developer.mozilla.org/ja/docs/Web/API/Node/insertBefore) と同様のシグネチャーで**要素の状態を維持しつつ**ノードの移動ができる API です。
