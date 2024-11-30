@@ -42,7 +42,7 @@ https://state-preserving-atomic-move.glitch.me/
 
 ### chrome以外のブラウザの反応
 
-standard position を確認すると mozilla チームは positive[^1] を、webkit チームは support[^2] をそれぞれ合意が取れており、残すは実装を待つのみという状況です。
+standard position を確認すると mozilla チームは positive[^1] を、webkit チームは support[^2] を示しており概ね合意が取れていそうな雰囲気を感じますので、残すは実装を待つのみかと思います。
 
 [^1]: https://github.com/mozilla/standards-positions/issues/1053
 [^2]: https://github.com/WebKit/standards-positions/issues/375
