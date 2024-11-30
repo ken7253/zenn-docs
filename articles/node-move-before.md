@@ -1,5 +1,5 @@
 ---
-title: "moveBeforeについて"
+title: "フロントエンドフレームワークから実装が求められているmoveBeforeメソッドとはなにか"
 emoji: "🦁"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["html", 'dom', 'javascript']
