@@ -48,7 +48,6 @@ standard position を確認すると mozilla チームは positive[^1] を、web
 [^1]: https://github.com/mozilla/standards-positions/issues/1053
 [^2]: https://github.com/WebKit/standards-positions/issues/375
 
-<!-- TODO: standard position に付いての説明を軽くする -->
 :::details standard position について補足
 
 standard position とは提案された新しい仕様に対しての mozilla や webkit のチームがどのように考えているかを表明する場です。
