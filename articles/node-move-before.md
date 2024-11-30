@@ -31,8 +31,7 @@ https://x.com/domfarolino/status/1790407887740666335
 
 ### 確認方法
 
-記事の公開時点ではこのメソッドは chrome の Canary 版(v133以降)で
-Atomic DOM move (Node.moveBefore) というフラグを有効化することで確認ができます。
+このメソッドは chrome 133 以降（記事公開時点では Canary 版にて）で Atomic DOM move (Node.moveBefore) というフラグを有効化することで一部の挙動を確認ができます。
 
 先程のポストのデモは[実際のサイト](https://state-preserving-atomic-move.glitch.me/)で確認できますので気になる方は、ぜひ環境を用意して実際に動作を確かめてみてください。
 
