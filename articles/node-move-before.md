@@ -6,6 +6,10 @@ topics: ["html", 'dom', 'javascript']
 published: false
 ---
 
+::: message
+この記事は [NIJIBOX Advent Calendar](https://qiita.com/advent-calendar/2024/nijibox) 2024 N日目の記事として公開しています。
+:::
+
 皆さんは新しく実装が進む `Node.prototype.moveBefore` というメソッドをご存知でしょうか、この記事ではこの新しいメソッドについて簡単な解説を行おうと思います。
 
 ## 新しく実装が進む `Node.prototype.moveBefore` メソッド
