@@ -36,7 +36,7 @@ https://x.com/domfarolino/status/1790407887740666335
 
 ### 確認方法
 
-このメソッドは chrome 133 以降（記事公開時点では Canary 版にて）で Atomic DOM move (Node.moveBefore) というフラグを有効化することで一部の挙動を確認ができます。
+このメソッドは chrome 131 以降で Atomic DOM move (Node.moveBefore) というフラグを有効化することで一部の挙動を確認ができます。
 
 先程のポストのデモは[実際のサイト](https://state-preserving-atomic-move.glitch.me/)で確認できますので気になる方は、ぜひ環境を用意して実際に動作を確かめてみてください。
 
@@ -85,3 +85,7 @@ standard position とは提案された新しい仕様に対しての mozilla �
 - [DOM State-Preserving Move - Chrome Platform Status](https://chromestatus.com/feature/5135990159835136?gate=5177450351558656)
 - [TPAC 2024 meeting · Issue #326 · whatwg/meta](https://github.com/whatwg/meta/issues/326#issuecomment-2377500295)
 - [Introduce moveBefore() state-preserving atomic move API](https://github.com/whatwg/dom/pull/1307)
+
+## 更新履歴
+
+- 動作確認バージョンを Canary 133 としていたが、131でもフラグを有効化すれば動いたので修正
