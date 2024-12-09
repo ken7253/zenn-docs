@@ -18,7 +18,7 @@
   "author": "ken7253 <ken7253@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "prettier": "^3.3.3",
+    "prettier": "^3.4.2",
     "zenn-cli": "^0.1.158"
   },
   "devDependencies": {
