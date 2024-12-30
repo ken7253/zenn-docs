@@ -29,7 +29,7 @@
     "globals": "^15.12.0",
     "markdownlint": "^0.37.2",
     "npm-check-updates": "^17.1.11",
-    "npm-run-all2": "^7.0.1",
+    "npm-run-all2": "^7.0.2",
     "textlint": "^14.4.0",
     "typescript-eslint": "^8.18.2"
   },
