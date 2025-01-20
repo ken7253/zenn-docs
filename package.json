@@ -28,7 +28,7 @@
     "eslint-plugin-react": "^7.37.4",
     "globals": "^15.14.0",
     "markdownlint": "^0.37.3",
-    "npm-check-updates": "^17.1.13",
+    "npm-check-updates": "^17.1.14",
     "npm-run-all2": "^7.0.2",
     "textlint": "^14.4.2",
     "typescript-eslint": "^8.19.1"
