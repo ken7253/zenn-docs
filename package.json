@@ -22,7 +22,7 @@
     "zenn-cli": "^0.2.3"
   },
   "devDependencies": {
-    "@eslint/js": "^9.29.0",
+    "@eslint/js": "^9.35.0",
     "eslint": "^9.30.0",
     "eslint-plugin-markdown": "^5.1.0",
     "eslint-plugin-react": "^7.37.5",
