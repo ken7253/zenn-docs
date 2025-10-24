@@ -12,6 +12,8 @@ published: false
 
 まず始めに私達はなぜテストコードを書くのでしょうか。
 
+これにはいくつかの
+
 これは極端な例ではありますが、テストコードを正しくかけていればレビュー時の動作確認不要になります。
 
 ## まずは関数のテストから始める
@@ -27,6 +29,27 @@ published: false
 <!-- 純粋関数はテストしやすいという前提があるのでそれを純粋関数という単語を出さずに理解してもらう -->
 
 ### 不要な引数を受け取らないようにする
+
+よくある例として、下記のように様々な情報がまとまったUser型の値を受け取っているにもかかわらず実際に利用するのは
+
+```ts
+type User = {
+  id: string;
+  name: string;
+  shortName: string;
+  subscribeState: {
+    enable: boolean;
+    usePromotion: boolean;
+    caseName: string;
+    point: number;
+  }
+  // ... 多くのプロパティ
+};
+```
+
+```ts
+
+```
 
 ### テスト用の引数を用意する
 
